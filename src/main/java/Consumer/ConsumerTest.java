@@ -1,8 +1,9 @@
 package Consumer;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
 import jdk8.User;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -11,14 +12,15 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 /**
- * 1、对入参要进行一系列操作，就用Consumer参数
+ * 1、对入参要进行一系列操作，就可以用Consumer封装这些操作，供来其他人使用
  *
  * 2、一个需要维护数据对象的类（如ArrayList底层维护的是一个数组：Object[] elementData），在封装的逻辑代码中需要使用到所维护的数据对象时，即可考虑使用Consumer为入参。
  */
 public class ConsumerTest {
     public static void main(String[] args) {
         //Test1();
-        Test2();
+        //Test2();
+        Test3();
 
     }
     //1.对一组数据+2并求和
@@ -57,4 +59,17 @@ public class ConsumerTest {
         consumer.accept(max1,max2);
     }
 
+    /**
+     * 将工资变为2倍
+     */
+    private static void Test3() {
+        List<User> list = Lists.newArrayList(new User(1, "张三", 1d), new User(2, "张三", 2d));
+        Function<User, Double> getSalary = User::getSalary;
+        BiConsumer<User, Double> setSalary = User::setSalary;
+        for (User user : list) {
+            Double salary = getSalary.apply(user);
+            setSalary.accept(user,2*salary);
+        }
+        System.out.println(list.toString());
+    }
 }

@@ -1,8 +1,8 @@
-package lock;
+package lock.ReentrantLock;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-public class ReentrantLock {
+public class MyReentrantLock {
     private AtomicReference<Thread> owner = new AtomicReference<Thread>();
     private int state = 0;
 
