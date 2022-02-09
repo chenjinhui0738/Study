@@ -3,7 +3,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <javamail.version>1.6.2</javamail.version>
+    </properties>
     <groupId>org.example</groupId>
     <artifactId>Study</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -52,7 +56,16 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.75</version>
         </dependency>
-
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>javax.mail-api</artifactId>
+            <version>${javamail.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>${javamail.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
