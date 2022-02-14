@@ -1,5 +1,7 @@
 package thread;
 
+import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.Callable;
@@ -11,16 +13,7 @@ import static java.lang.Thread.sleep;
 
 public class ThreadTest {
     public static int count = 0;
-    private static Object object = new Object();
-
-    public static void main(String[] args)  throws Exception {
-        //Test1();
-        //Test2();
-        //Test3();
-        //Test4();
-        Test5();
-        Test6();
-    }
+    public Object object = new Object();
 
 
     /**
@@ -33,7 +26,8 @@ public class ThreadTest {
      *
      * 当run方法（线程体）运行完后线程自动结束
      */
-    private static void Test1() throws Exception {
+    @Test
+    public void Test1() throws Exception {
         //1.继承Thread
         Thread thread1 = new MyThread();
         thread1.start();
@@ -64,7 +58,8 @@ public class ThreadTest {
     /**
      * 线程中断： interrupt 方法
      */
-    private static void Test2() throws InterruptedException {
+    @Test
+    public void Test2() throws InterruptedException {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -95,7 +90,8 @@ public class ThreadTest {
      *
      * 可以让线程按照先后顺序运行
      */
-    private static void Test3() throws Exception {
+    @Test
+    public void Test3() throws Exception {
         Thread thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -134,7 +130,8 @@ public class ThreadTest {
      *
      * 线程唤醒：notify方法
      */
-    private static void Test4() throws InterruptedException {
+    @Test
+    public void Test4() throws InterruptedException {
         Thread thread1 = new Thread(() -> {
             synchronized (object){
                 System.out.println("线程1开始等待");
@@ -189,7 +186,8 @@ public class ThreadTest {
      * 当用户线程都结束，只剩守护线程时，jvm则会退出
      *
      */
-    private static void Test5() throws InterruptedException {
+    @Test
+    public void Test5() throws InterruptedException {
         Thread thread = new Thread(() -> {
             for(int i=0;;i++){
                 try {
@@ -210,7 +208,8 @@ public class ThreadTest {
     /**
      * 并发演示
      */
-    private static void Test6() {
+    @Test
+    public void Test6() {
         for (int i=0;i<=100;i++){
             new Thread(new Runnable() {
                 @Override

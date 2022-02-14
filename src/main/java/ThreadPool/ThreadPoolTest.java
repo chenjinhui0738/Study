@@ -1,6 +1,11 @@
 package ThreadPool;
 
-import java.util.concurrent.*;
+import org.junit.jupiter.api.Test;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 线程池运行原理：
@@ -36,15 +41,12 @@ import java.util.concurrent.*;
  *
  */
 public class ThreadPoolTest {
-    public static void main(String[] args) {
-        Test1();
-        Test2();
-    }
 
     /**
      * 4种线程池
      */
-    private static void Test1() {
+    @Test
+    public void Test1() {
         //1.创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。
         //内部实现：new ThreadPoolExecutor(nThreads, nThreads,0L,TimeUnit.MILLISECONDS,new LinkedBlockingQueue());
         ExecutorService fixedThreadPool = Executors.newFixedThreadPool(5);
@@ -76,7 +78,7 @@ public class ThreadPoolTest {
         },3,1,TimeUnit.SECONDS);
 
     }
-
-    private static void Test2() {
+    @Test
+    public void Test2() {
     }
 }

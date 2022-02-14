@@ -1,4 +1,6 @@
-package AQS;
+package AQS.CountDownLatch;
+
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -21,13 +23,14 @@ import java.util.concurrent.Executors;
  * 当主线程调用countDown()时，计数器变为0，多个线程同时被唤醒。
  */
 public class CountDownLatchTest {
-    public static void main(String[] args) throws InterruptedException {
-        //Test1();
-        Test2();
-    }
+    /**
+     * 开启4个线程任务，当四个线程任务执行完后，才轮到主线程执行
+     * @throws InterruptedException
+     */
+    @Test
     public static void Test1() throws InterruptedException{
         ExecutorService service = Executors.newCachedThreadPool();
-        CountDownLatch latch = new CountDownLatch(4);//计数器，等于0时调用await可以放行
+        CountDownLatch latch = new CountDownLatch(4);//计数器，等于0时调用await可以放行，这里如果设置成5，其他线程执行完后则永远不会向下执行
         for (int i = 0; i < 4; i++) {
             Runnable runnable = new Runnable() {
                 @Override
@@ -47,7 +50,8 @@ public class CountDownLatchTest {
         latch.await();
         System.out.println("主线程执行。。。");
     }
-    public static void Test2() throws InterruptedException{
+    @Test
+    public void Test2() throws InterruptedException{
         ExecutorService service = Executors.newCachedThreadPool();
         final CountDownLatch cdOrder = new CountDownLatch(1);
         final CountDownLatch cdAnswer = new CountDownLatch(4);
@@ -57,7 +61,7 @@ public class CountDownLatchTest {
                 public void run() {
                     try {
                         System.out.println("选手" + Thread.currentThread().getName() + "正在等待裁判发布口令");
-                        cdOrder.await();
+                        cdOrder.await();//所有线程在这里等待
                         System.out.println("选手" + Thread.currentThread().getName() + "已接受裁判口令");
                         Thread.sleep((long) (Math.random() * 10000));
                         System.out.println("选手" + Thread.currentThread().getName() + "到达终点");

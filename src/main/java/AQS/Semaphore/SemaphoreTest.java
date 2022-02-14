@@ -1,4 +1,4 @@
-package semaphore;
+package AQS.Semaphore;
 
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
@@ -11,7 +11,7 @@ import java.util.concurrent.Semaphore;
  * @date 2018年9月30日
  * @Description: 需要一次性拿一个许可的情况
  */
-public class SemaphoreExample1 {
+public class SemaphoreTest {
     // 请求的数量
     private static final int threadCount = 500;
 
