@@ -6,7 +6,7 @@ package DesignPattern.Strategy;
  */
 public class StrategyTest {
     public static void main(String[] args) {
-        Context context = new Context();
+        Context context = new Context();//策略核心类
         context.setStrategy(TravelFactory.getTravel("air"));//设置出行方式为飞机
         context.travel();
         context.setStrategy(TravelFactory.getTravel("train"));//设置出行方式为火车
