@@ -33,7 +33,7 @@ public class RedisLock {
      * @return
      */
     public synchronized boolean lock(String key,String value,Long timeOut) {
-        //设置锁
+        //设置锁,key不存在时插入，并设置过期时间，存在则不插入
         String result = jedis.set(key, value, "NX", "PX", timeOut);
         if (LOCK_SUCCESS.equals(result)) {
             return true;

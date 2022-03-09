@@ -1,0 +1,26 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8888
+spring:
+  application:
+    name: configserver
+  cloud:
+    config:
+      label: master
+      server:
+        git:
+          skip-ssl-validation: true
+          uri: https://github.com/forezp/SpringcloudConfig #末尾不能加/
+          search-paths: respo
+          username:
+          password:
+   #http请求地址和资源文件映射如下:
+  #
+  #/{application}/{profile}[/{label}]
+  #/{application}-{profile}.yml
+  #/{label}/{application}-{profile}.yml
+  #/{application}-{profile}.properties
+  #/{label}/{application}-{profile}.properties

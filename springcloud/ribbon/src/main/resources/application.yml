@@ -1,0 +1,21 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8764
+spring:
+  application:
+    name: ribbon
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream #暴露服务端点
+hystrix:
+   dashboard:
+     proxy-stream-allow-list: "localhost"
+zuul:
+  ribbonIsolationStrategy: THREAD #设置Hystrix隔离策略为线程池（解决threadPool一直loading的问题）
+  threadPool:
+    useSeparateThreadPools: true #每个路由使用独立的线程池（解决threadPool一直loading的问题）
