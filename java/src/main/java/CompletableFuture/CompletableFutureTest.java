@@ -1,13 +1,14 @@
 package CompletableFuture;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.function.BinaryOperator;
-import java.util.function.Function;
 
 import static java.util.stream.Collectors.toList;
 
@@ -23,11 +24,8 @@ import static java.util.stream.Collectors.toList;
  * thenCombine、thenCombineAsync：允许你把两个异步的操作整合；比如把第一个和第二个操作返回的结果做字符串的连接操作
  */
 public class CompletableFutureTest {
-    public static void main(String[] args) {
-        Test1();//CompletableFuture异步调用
-        //Test2();//parallelStream方式
-    }
     //1.CompletableFuture异步调用
+    @Test
     public static void Test1(){
         long start = System.currentTimeMillis();
         List<RemoteLoader> remoteLoaders = Arrays.asList(
@@ -53,6 +51,7 @@ public class CompletableFutureTest {
         System.out.println("总共花费时间:" + (end - start));
     }
     //2.parallelStream方式
+    @Test
     public static void Test2(){
         long start = System.currentTimeMillis();
         List<RemoteLoader> remoteLoaders = Arrays.asList(
@@ -66,7 +65,31 @@ public class CompletableFutureTest {
         long end = System.currentTimeMillis();
         System.out.println("总共花费时间:" + (end - start));
     }
-
+    //3.
+    @Test
+    public static void Test3() throws ExecutionException, InterruptedException {
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> new String("123"));
+        future.whenCompleteAsync((s, throwable) -> System.out.println("complete"));//whenCompleteAsync无结果返回值
+        CompletableFuture<String> handleFuture = future.handleAsync((s, throwable) -> "handle");//handleAsync比complete多了可以处理返回结果，async表示可以由其他线程进行异步处理，可以多一个参数指定线程池
+        System.out.println(handleFuture.get());
+    }
+    //4.
+    @Test
+    public static void Test4() throws ExecutionException, InterruptedException {
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+            int i= 10/0;
+            return new Random().nextInt(10);
+        }).handleAsync((param, throwable) -> {
+            int result = -1;
+            if(throwable==null){
+                result = param * 2;
+            }else{
+                System.out.println(throwable.getMessage());
+            }
+            return result;
+        });
+        System.out.println(future.get());
+    }
 
     public static class CustomerInfoService implements RemoteLoader {
         public String load() {

@@ -2,10 +2,7 @@ package jdk8;
 
 import com.google.common.collect.Lists;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiFunction;
-import java.util.function.BinaryOperator;
 
 public class ReduceTest {
     private static final List<User> userList = Lists.newArrayList(new User[]{new User(1, "hangman", 100d),new User(1, "list", 200d),new User(2, "wing", 200d),
@@ -31,4 +28,12 @@ public class ReduceTest {
         //5.求乘积之和，第二个参数x代表当前累计的值，y代表当前对象，第三个参数为每次的操作
         double sumParallel3 = userList.parallelStream().reduce(0.0, (x, y) -> x + (y.getUserId() * y.getSalary()), Double::sum);
     }
+    public void Test2(){
+        //        List list = null;
+//        List or = Optional.fromNullable(list).or(Lists.newArrayList(new int[]{1, 2}));
+        List<User> userList = Lists.newArrayList(new User[]{new User(1, "张三", 1.0d), new User(2, "李四", 2.0d)});
+        Double reduce = userList.stream().reduce(0.0, (x, y) -> x + (y.getUserId() * y.getSalary()), Double::sum);
+        Double reduce2 = userList.stream().reduce(0.0, (aDouble, user) -> aDouble + user.getUserId() * user.getSalary(), (aDouble, aDouble2) -> aDouble + aDouble2);
+    }
+
 }

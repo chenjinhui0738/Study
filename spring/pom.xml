@@ -48,6 +48,14 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

@@ -14,12 +14,15 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
+/**
+ * springboot+redis分布式锁-模拟抢单
+ *
+ */
 public class RedisTest {
     private static Logger logger = LoggerFactory.getLogger(RedisTest.class);
     JedisCommands jedisCom;
     JedisPool jedisPool;
     JedisPoolConfig config = new JedisPoolConfig();
-
     public RedisTest() {
         // 初始化JedisPool
         jedisPool = new JedisPool(config, "127.0.0.1", 6379, 2000);
@@ -57,7 +60,6 @@ public class RedisTest {
                 shopUsers.add(shopUser);
             }
         });
-
         return shopUsers;
     }
     /**
@@ -76,7 +78,7 @@ public class RedisTest {
             if (nKuCuen <= 0) {
                 break;
             }
-            if (jedisCom.setnx(shangpingKey, b)) {
+            if (this.setnx(shangpingKey, b)) {
                 //用户b拿到锁
                 logger.info("用户{}拿到锁...", b);
                 try {
@@ -102,7 +104,7 @@ public class RedisTest {
                 } finally {
                     logger.info("用户{}释放锁...", b);
                     //释放锁
-                    jedisCom.delnx(shangpingKey, b);
+                    this.delnx(shangpingKey, b);
                 }
             } else {
                 //用户b没拿到锁，在超时范围内继续请求锁，不需要处理
@@ -113,6 +115,13 @@ public class RedisTest {
         }
         return "";
     }
+
+    /**
+     * 锁设置
+     * @param key
+     * @param val
+     * @return
+     */
     public boolean setnx(String key, String val) {
         Jedis jedis = null;
         try {
@@ -130,6 +139,13 @@ public class RedisTest {
         }
         return false;
     }
+
+    /**
+     * 锁删除
+     * @param key
+     * @param val
+     * @return
+     */
     public int delnx(String key, String val) {
         Jedis jedis = null;
         try {

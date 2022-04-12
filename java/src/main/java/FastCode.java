@@ -1,8 +1,11 @@
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import jdk8.User;
+import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
+import org.springframework.cglib.beans.BeanCopier;
+import org.springframework.cglib.core.Converter;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -22,6 +25,9 @@ public class FastCode {
         List<Integer> list2= Stream.of(intArr).collect(Collectors.toList());
         List<Integer> list3= Arrays.stream(intArr2).boxed().collect(Collectors.toList());//boxed是把int转为Integer
         List<Integer> list4 = Lists.newArrayList(intArr);
+        //String数组转Integer数组
+        String[] strArr = new String[]{"1","2"};
+        Integer[] intArray = (Integer[]) ConvertUtils.convert(strArr, Integer.class);
     }
     @Test
     public void Test2(){
@@ -52,6 +58,9 @@ public class FastCode {
         User user3 = null;
         String userName = Optional.ofNullable(user3).map(User::getUserName).orElse("王五");
         System.out.println(userName);
+        //
+        User user4 = null;
+        Optional.ofNullable(user4).orElse(new User()).getUserName();
     }
     @Test
     public void Test4(){
@@ -75,6 +84,24 @@ public class FastCode {
     }
     @Test
     public void Test6(){
+        //使用BeanCopier工具类对Java实体类复制,不要使用beanutil效率低，且同属性不同类型无法复制
+        User source = new User();
+        Supplier.User target = new Supplier.User();
+        BeanCopier copier = BeanCopier.create(source.getClass(), target.getClass(), true);
+        copier.copy(source, target, new Converter() {
+            @Override
+            public Object convert(Object value, Class targetClazz, Object methodName) {
+                //将string属性复制为integer
+                if(value !=null && value instanceof String && Integer.class.equals(targetClazz)){
+                    return Integer.parseInt(value.toString());
+                }
+                //将integer属性复制为string
+                if(value !=null && value instanceof Integer && String.class.equals(targetClazz)){
+                    return String.valueOf(value);
+                }
+                return value;
+            }
+        });
 
     }
     @Test
