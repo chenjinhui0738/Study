@@ -14,11 +14,11 @@ public class HelloController {
     @HystrixCommand(fallbackMethod = "helloError")
     @RequestMapping(value = "/hello")
     //服务消费方
-    public String hello(@RequestParam String name){
+    public String hello(@RequestParam String name) {
         return helloService.hiService(name);
     }
 
     public String helloError(String name) {
-        return "hello,"+name+",sorry,error!";
+        return "hello," + name + ",sorry,error!";
     }
 }

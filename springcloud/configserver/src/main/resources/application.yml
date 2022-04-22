@@ -17,7 +17,7 @@ spring:
           search-paths: respo
           username:
           password:
-   #http请求地址和资源文件映射如下:
+    #http请求地址和资源文件映射如下:
   #
   #/{application}/{profile}[/{label}]
   #/{application}-{profile}.yml

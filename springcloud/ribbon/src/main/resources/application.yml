@@ -13,8 +13,8 @@ management:
       exposure:
         include: hystrix.stream #暴露服务端点
 hystrix:
-   dashboard:
-     proxy-stream-allow-list: "localhost"
+  dashboard:
+    proxy-stream-allow-list: "localhost"
 zuul:
   ribbonIsolationStrategy: THREAD #设置Hystrix隔离策略为线程池（解决threadPool一直loading的问题）
   threadPool:

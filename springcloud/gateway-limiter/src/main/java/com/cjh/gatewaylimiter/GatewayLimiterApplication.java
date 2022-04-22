@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 public class GatewayLimiterApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run( GatewayLimiterApplication.class, args );
+        SpringApplication.run(GatewayLimiterApplication.class, args);
     }
 
     @Bean

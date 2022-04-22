@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class FeignController {
     @Autowired
     FeignService feignService;
-    @RequestMapping(value = "/hello",method = RequestMethod.GET)
-    public String sayHi(@RequestParam String name){
+
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    public String sayHi(@RequestParam String name) {
         return feignService.sayHiFromClientOne(name);
     }
 }
