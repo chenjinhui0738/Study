@@ -1,0 +1,26 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `batch_insert_sysSystem`()
+BEGIN
+  DECLARE i INT DEFAULT 1;
+  DECLARE userId INT DEFAULT 5000000;
+ set @execSql = 'INSERT INTO `easyexcel`.`sys_system`(`id`, `system_name`, `system_key`, `description`, `state`, `create_uid`, `create_time`) VALUES';
+ set @execData = '';
+  WHILE i<=5000000 DO
+   set @attr = "'测试很长很长很长很长很的属性'";
+	 set @state = 1;
+	 set @dt = "'2008-09-10 00:00:00.000'";
+  set @execData = concat(@execData, "(", i, ",", @attr,",", @attr, ",", @attr, ",", @state, ",", @attr, ",", @dt,  ")");
+  if i % 10000 = 0
+  then
+     set @stmtSql = concat(@execSql, @execData,";");
+    prepare stmt from @stmtSql;
+    execute stmt;
+    DEALLOCATE prepare stmt;
+    commit;
+    set @execData = "";
+   else
+     set @execData = concat(@execData, ",");
+   end if;
+  SET i=i+1;
+  END WHILE;
+
+END

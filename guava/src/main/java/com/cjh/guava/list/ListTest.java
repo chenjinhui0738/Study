@@ -46,7 +46,7 @@ public class ListTest {
     }
 
     /**
-     * 笛卡儿集
+     * 笛卡尔集
      */
     @Test
     public void Test3(){
