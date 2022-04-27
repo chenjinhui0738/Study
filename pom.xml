@@ -14,6 +14,9 @@
         <module>guava</module>
         <module>easyexcel</module>
         <module>openoffice</module>
+        <module>springbatch</module>
+        <module>tesseract</module>
+        <module>uid_generator</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
