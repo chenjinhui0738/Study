@@ -13,6 +13,9 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 获取应用上下文ApplicationContext两种方式
+ */
 @RestController
 @RequestMapping("/user")
 @Qualifier
