@@ -17,6 +17,8 @@
         <module>springbatch</module>
         <module>tesseract</module>
         <module>uid_generator</module>
+        <module>mysql</module>
+        <module>spring-aop</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
