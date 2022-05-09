@@ -19,6 +19,7 @@
         <module>uid_generator</module>
         <module>mysql</module>
         <module>spring-aop</module>
+        <module>mybatis-plus</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -54,6 +55,12 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>30.1.1-jre</version>
+        </dependency>
+        <!--工具类包-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.1</version>
         </dependency>
         <!--mysql-->
         <dependency>

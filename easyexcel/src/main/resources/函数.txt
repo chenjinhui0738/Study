@@ -2,7 +2,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `batch_insert_sysSystem`()
 BEGIN
   DECLARE i INT DEFAULT 1;
   DECLARE userId INT DEFAULT 5000000;
- set @execSql = 'INSERT INTO `easyexcel`.`sys_system`(`id`, `system_name`, `system_key`, `description`, `state`, `create_uid`, `create_time`) VALUES';
+ set @execSql = 'INSERT INTO `easyexcel`.`t_system`(`id`, `system_name`, `system_key`, `description`, `state`, `create_uid`, `create_time`) VALUES';
  set @execData = '';
   WHILE i<=5000000 DO
    set @attr = "'测试很长很长很长很长很的属性'";

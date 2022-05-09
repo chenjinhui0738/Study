@@ -1,0 +1,1 @@
+INSERT INTO t_product (id, NAME, price) VALUES (1, '外星人笔记本', 100);

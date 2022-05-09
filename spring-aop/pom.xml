@@ -14,7 +14,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
     </properties>
-    <!--引入父工程的pom,添加依赖时可以直接使用父工程的版本-->
+    <!--引入父工程的pom,添加依赖时可以直接使用父工程的依赖-->
     <parent>
         <groupId>org.cjh</groupId>
         <artifactId>Study</artifactId>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cjh.mybatisplus.dao.UserMapper">
+    <!--SQL片段，记录基础字段-->
+    <sql id="BaseColumns">id,user_name,age,email,is_deleted,create_time</sql>
+    <!--根据id查询，返回map-->
+    <select id="selectMapById" resultType="map">
+        select <include refid="BaseColumns"/> from t_user where id = #{id}
+    </select>
+    <!--分页查询-->
+    <select id="selectWithPage" resultType="com.cjh.mybatisplus.entity.User">
+        select <include refid="BaseColumns"/> from t_user WHERE age > #{age}
+    </select>
+</mapper>

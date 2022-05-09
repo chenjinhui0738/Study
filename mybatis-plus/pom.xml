@@ -3,40 +3,50 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.cjh</groupId>
-    <artifactId>easyexcel</artifactId>
+    <artifactId>mybatis-plus</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>easyexcel</name>
+    <name>mybatis-plus</name>
     <description>Demo project for Spring Boot</description>
-
-    <properties>
-        <java.version>1.8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
-        <mysql.version>8.0.22</mysql.version>
-    </properties>
     <!--引入父工程的pom,添加依赖时可以直接使用父工程的依赖-->
     <parent>
         <groupId>org.cjh</groupId>
         <artifactId>Study</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!-- 阿里开源EXCEL -->
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>easyexcel</artifactId>
-            <version>1.1.1</version>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.4.2</version>
         </dependency>
-        <!--分页插件-->
+        <!--lombok插件-->
         <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
-            <version>5.1.10</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--代码生成器-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>3.5.1</version>
+        </dependency>
+        <!--freemarker模板-->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.31</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -62,18 +72,13 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/mapper/*.xml</include>
-                </includes>
-            </resource>
+        <!--<resources>
             <resource>
                 <directory>src/main/resources</directory>
             </resource>
-        </resources>
+        </resources>-->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -90,7 +95,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.3.7.RELEASE</version>
                 <configuration>
-                    <mainClass>com.cjh.easyexcel.EasyexcelApplication</mainClass>
+                    <mainClass>com.cjh.mybatisplus.MybatisPlusApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
@@ -100,25 +105,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <!--代码生成插件-->
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.4.0</version>
-                <configuration>
-                    <verbose>true</verbose>
-                    <!--覆盖原来生成的文件-->
-                    <overwrite>true</overwrite>
-                </configuration>
-                <!--加入下面这个依赖-->
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>${mysql.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>

@@ -16,7 +16,7 @@
   <select id="selectSysSystemVOList" parameterType="com.cjh.easyexcel.vo.SysSystemVO" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from sys_system
+    from t_system
     where 1=1
     <if test="id != null">
       and id = #{id,jdbcType=INTEGER},
@@ -46,7 +46,7 @@
   <select id="selectCountSysSystemVOList" parameterType="com.cjh.easyexcel.vo.SysSystemVO" resultType="java.lang.Integer">
     select
     count(1)
-    from sys_system
+    from t_system
     where 1=1
     <if test="id != null">
       and id = #{id,jdbcType=INTEGER},

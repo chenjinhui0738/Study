@@ -1,4 +1,4 @@
-CREATE TABLE `sys_system` (
+CREATE TABLE `t_system` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `system_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `system_key` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
