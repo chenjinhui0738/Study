@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.cjh.mybatisplus.dao.UserMapper;
+import com.cjh.mybatisplus.mapper.UserMapper;
 import com.cjh.mybatisplus.entity.User;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;

@@ -1,5 +1,4 @@
-package com.cjh.mybatisplus.dao;
-
+package com.cjh.mybatisplus.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cjh.mybatisplus.entity.User;
@@ -18,5 +17,4 @@ public interface UserMapper extends BaseMapper<User> {
      ** @return
      **/
    Page<User> selectWithPage(@Param("page") Page<User> page,@Param("age") Integer age);
-
 }

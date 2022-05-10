@@ -1,6 +1,6 @@
 package com.cjh.mybatisplus;
 
-import com.cjh.mybatisplus.dao.ProductMapper;
+import com.cjh.mybatisplus.mapper.ProductMapper;
 import com.cjh.mybatisplus.entity.Product;
 import org.junit.Test;
 import org.junit.runner.RunWith;

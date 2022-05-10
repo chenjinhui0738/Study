@@ -1,4 +1,4 @@
-package com.cjh.mybatisplus.dao;
+package com.cjh.mybatisplus.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.cjh.mybatisplus.entity.Product;
