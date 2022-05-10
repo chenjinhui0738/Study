@@ -11,7 +11,7 @@ import java.util.Collections;
  */
 public class FastAutoGeneratorStart {
     public static void main(String[] args) {
-        FastAutoGenerator.create("jdbc:mysql://127.0.0.1:3306/mybatis-plus?serverTimezone=UTC&&characterEncoding=utf-8&userSSL=false", "root", "CJH1228793447*").
+        FastAutoGenerator.create("jdbc:mysql://127.0.0.1:3306/mybatis-plus?serverTimezone=UTC&&characterEncoding=utf-8&userSSL=false", "root", "root").
                 //全局配置
                 globalConfig(builder -> {
                     builder.author("cjh") // 设置作者

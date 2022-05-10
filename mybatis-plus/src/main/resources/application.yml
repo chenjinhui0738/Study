@@ -14,7 +14,7 @@ spring:
     data: classpath:db/t_user_data.sql,classpath:db/t_product_data.sql
     url: jdbc:mysql://localhost:3306/mybatis-plus?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8
     username: root
-    password: CJH1228793447*
+    password: root
     #初始化脚本语句
     initialization-mode: ALWAYS
 #sql日志打印
