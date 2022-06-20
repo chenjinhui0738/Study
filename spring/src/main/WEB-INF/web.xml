@@ -11,6 +11,7 @@
     <filter-mapping>
         <filter-name>CorsFilter</filter-name>
         <url-pattern>/test1</url-pattern>
+       <!--<url-pattern>/*</url-pattern>-->
     </filter-mapping>
     <!-- 跨域访问 END  -->
 </web-app>

@@ -6,8 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "spring.encrypt")
 public class EncryptProperties {
-    private final static String DEFAULT_KEY = "default";
-    private String key = DEFAULT_KEY;
+    private String key;
 
     public String getKey() {
         return key;
