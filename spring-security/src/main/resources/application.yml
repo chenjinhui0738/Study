@@ -1,0 +1,28 @@
+server:
+  #设置session有效期为1h
+  session:
+    timeout: 3600
+
+#默认开启security基础登录方式-弹窗模式
+security:
+  basic:
+    enabled: true
+#查找的文件目录优先级，没找到就去下一级找默认为{"classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/"};
+spring:
+  resources:
+    static-locations: classpath:/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/spring-security?serverTimezone=UTC&useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+  redis:
+    database: 0
+    port: 6379
+    host: 127.0.0.1
+    password: root
+  #配置Session存储方式为Redis
+  session:
+    store-type: redis
+
+
