@@ -1,7 +1,6 @@
 package DesignPattern.Strategy;
 
 /**
- *
  * 策略模式其实就是通过设置核心决策类决定使用哪一个策略，再调用其对应方法
  */
 public class StrategyTest {

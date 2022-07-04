@@ -16,9 +16,13 @@ import java.net.URLConnection;
  * 文件格式转换工具类
  */
 public class FileConvertUtil {
-    /** 默认转换后文件后缀 */
+    /**
+     * 默认转换后文件后缀
+     */
     private static final String DEFAULT_SUFFIX = "pdf";
-    /** openoffice_port */
+    /**
+     * openoffice_port
+     */
     private static final Integer OPENOFFICE_PORT = 8100;
 
     /**
@@ -65,7 +69,7 @@ public class FileConvertUtil {
      */
     public static InputStream covertCommonByStream(InputStream inputStream, String suffix) throws Exception {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        OpenOfficeConnection connection = new SocketOpenOfficeConnection("127.0.0.1",OPENOFFICE_PORT);
+        OpenOfficeConnection connection = new SocketOpenOfficeConnection("127.0.0.1", OPENOFFICE_PORT);
         connection.connect();
         DocumentConverter converter = new StreamOpenOfficeDocumentConverter(connection);
         DefaultDocumentFormatRegistry formatReg = new DefaultDocumentFormatRegistry();
@@ -80,7 +84,7 @@ public class FileConvertUtil {
      * 方法描述 outputStream转inputStream
      */
     public static ByteArrayInputStream outputStreamConvertInputStream(final OutputStream out) throws Exception {
-        ByteArrayOutputStream baos=(ByteArrayOutputStream) out;
+        ByteArrayOutputStream baos = (ByteArrayOutputStream) out;
         return new ByteArrayInputStream(baos.toByteArray());
     }
 

@@ -2,28 +2,24 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
     <modules>
+        <module>gatewayserver</module>
         <module>configclient</module>
         <module>configserver</module>
         <module>eurekaclient</module>
         <module>eurekaserver</module>
         <module>feign</module>
         <module>gateway-limiter</module>
-        <module>gatewayserver</module>
         <module>ribbon</module>
         <module>zuul</module>
     </modules>
-    <packaging>pom</packaging>
-    <parent>
-        <groupId>org.cjh</groupId>
-        <artifactId>Study</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
-
+    <groupId>org.cjh</groupId>
     <artifactId>springcloud</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <dependencies>
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot</artifactId>
             <version>2.5.6</version>
@@ -34,7 +30,7 @@
             <artifactId>spring-boot-autoconfigure</artifactId>
             <version>2.5.6</version>
             <scope>compile</scope>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
 

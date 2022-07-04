@@ -4,6 +4,7 @@ import java.io.*;
 
 public class FileTest {
     private static int position = -1;
+
     public static void main(String[] args) {
         Test1();
     }
@@ -26,16 +27,16 @@ public class FileTest {
             fos = new FileOutputStream(targetFile);
             // 数据读写
             int len;
-            while ((len = fis.read(buf) )!= -1) {
+            while ((len = fis.read(buf)) != -1) {
                 fos.write(buf, 0, len);
                 // 当已经上传了2000字节的文件内容时，网络中断了，抛出异常
-                if (targetFile.length() >2000) {
+                if (targetFile.length() > 2000) {
                     position = 2000;
                     throw new FileAccessException();
                 }
             }
         } catch (FileAccessException e) {
-            keepGoing(sourceFile,targetFile, position);
+            keepGoing(sourceFile, targetFile, position);
         } catch (FileNotFoundException e) {
             System.out.println("指定文件不存在");
         } catch (IOException e) {
@@ -57,11 +58,12 @@ public class FileTest {
 
     /**
      * 保持继续上传
+     *
      * @param source
      * @param target
      * @param position
      */
-    private static void keepGoing(File source,File target, int position) {
+    private static void keepGoing(File source, File target, int position) {
         try {
             System.out.println("发生网络中断");
             //模拟中断事件，设置为10s
@@ -81,7 +83,7 @@ public class FileTest {
             byte[] buf = new byte[1024];
             // 数据读写
             int len;
-            while ((len = readFile.read(buf) )!= -1) {
+            while ((len = readFile.read(buf)) != -1) {
                 writeFile.write(buf, 0, len);
             }
             System.out.println("下载完成");

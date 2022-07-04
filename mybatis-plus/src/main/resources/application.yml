@@ -4,8 +4,8 @@ server:
 spring:
   application:
     name: mybatis-plus
-# 应用服务 WEB 访问端口
-# 数据库配置
+  # 应用服务 WEB 访问端口
+  # 数据库配置
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     #建表脚本位置
@@ -36,3 +36,5 @@ mybatis-plus:
       logic-delete-value: 0
       # 逻辑未删除值(默认为 0)
       logic-not-delete-value: 1
+test:
+  list: a,b

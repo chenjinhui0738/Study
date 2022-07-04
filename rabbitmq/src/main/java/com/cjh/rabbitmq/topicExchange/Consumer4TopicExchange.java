@@ -1,11 +1,7 @@
 package com.cjh.rabbitmq.topicExchange;
 
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.QueueingConsumer;
 public class Consumer4TopicExchange {
-    public static void main(String[] args) throws Exception {
+    /*public static void main(String[] args) throws Exception {
 
 
         ConnectionFactory connectionFactory = new ConnectionFactory() ;
@@ -43,5 +39,5 @@ public class Consumer4TopicExchange {
             String msg = new String(delivery.getBody());
             System.out.println("收到消息：" + msg);
         }
-    }
+    }*/
 }

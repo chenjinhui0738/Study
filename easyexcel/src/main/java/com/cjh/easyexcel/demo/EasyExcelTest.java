@@ -4,7 +4,7 @@ import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.excel.metadata.Table;
 import com.alibaba.excel.support.ExcelTypeEnum;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -50,6 +50,7 @@ public class EasyExcelTest {
         writer.write0(userList, sheet, table);
         writer.finish();
     }
+
     /**
      * 针对105W以内的记录数可以调用该方法分多批次查出然后写入到EXCEL的一个SHEET中
      * 注意：
@@ -109,6 +110,7 @@ public class EasyExcelTest {
 
         writer.finish();
     }
+
     /**
      * 针对几百万的记录数可以调用该方法分多批次查出然后写入到EXCEL的多个SHEET中
      * 注意：

@@ -1,6 +1,6 @@
 package com.cjh.easyexcel.vo;
 
-public class ResultVO<V>{
+public class ResultVO<V> {
     private String msg;
 
     public String getMsg() {

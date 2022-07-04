@@ -7,6 +7,6 @@ import org.springframework.stereotype.Component;
 public class UserImpl1 implements UserInterface {
     @Override
     public User getUser() {
-        return new User(1,"张三");
+        return new User(1, "张三");
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan("com.cjh.mybatisplus.dao") //可以将主类中的注解移到此处
+@MapperScan("com.cjh.mybatisplus.mapper") //可以将主类中的注解移到此处
 public class MybatisPlusConfig {
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {

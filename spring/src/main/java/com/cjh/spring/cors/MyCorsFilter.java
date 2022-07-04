@@ -20,8 +20,12 @@ public class MyCorsFilter implements Filter {
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with,content-type");
         chain.doFilter(req, res);
     }
+
     @Override
-    public void init(FilterConfig filterConfig) {}
+    public void init(FilterConfig filterConfig) {
+    }
+
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 }

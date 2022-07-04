@@ -18,12 +18,12 @@ public class ConcurrentHashMapTest {
 
     }
 
-    private static void Test1(Map<String,Object> map) throws InterruptedException {
+    private static void Test1(Map<String, Object> map) throws InterruptedException {
         ExecutorService service = Executors.newFixedThreadPool(5);
         long begin = System.currentTimeMillis();
-        for(int i=0;i <5;i++){
+        for (int i = 0; i < 5; i++) {
             service.execute(() -> {
-                for(int j=0;j <5000000;j++){
+                for (int j = 0; j < 5000000; j++) {
                     int value = ThreadLocalRandom
                             .current()
                             .nextInt(10000);
@@ -35,6 +35,6 @@ public class ConcurrentHashMapTest {
         }
         service.shutdown();//关闭执行器
         service.awaitTermination(1, TimeUnit.MINUTES);//等待线程执行完后关闭，最多等待1分钟
-        System.out.println(System.currentTimeMillis()-begin);
+        System.out.println(System.currentTimeMillis() - begin);
     }
 }

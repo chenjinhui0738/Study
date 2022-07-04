@@ -15,11 +15,45 @@
         <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
     </properties>
-
+    <parent>
+        <groupId>org.cjh</groupId>
+        <artifactId>springcloud</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>woodstox-core</artifactId>
+                    <groupId>com.fasterxml.woodstox</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jersey-client</artifactId>
+                    <groupId>com.sun.jersey</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jersey-core</artifactId>
+                    <groupId>com.sun.jersey</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-configuration</artifactId>
+                    <groupId>commons-configuration</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>joda-time</artifactId>
+                    <groupId>joda-time</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>stax2-api</artifactId>
+                    <groupId>org.codehaus.woodstox</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>HdrHistogram</artifactId>
+                    <groupId>org.hdrhistogram</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Order(101)
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)//开启权限校验
+@EnableGlobalMethodSecurity(prePostEnabled = true)//开启权限校验,让@PreAuthorize注解生效
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 }
 

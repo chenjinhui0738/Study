@@ -13,13 +13,13 @@ public class ReduceTest {
 
     private static void Test1() {
         //1.没有初始值的累加值
-        double sum = userList.stream().mapToDouble(User::getSalary).reduce(0,(a, b) -> a + b);
+        double sum = userList.stream().mapToDouble(User::getSalary).reduce(0, (a, b) -> a + b);
         //2.有初始值的累加值
-        double sum2 = userList.stream().mapToDouble(User::getSalary).reduce(100,(a, b) -> a + b);
+        double sum2 = userList.stream().mapToDouble(User::getSalary).reduce(100, (a, b) -> a + b);
         //3.没有初始值的累加值（并行流）
-        double sumParallel = userList.parallelStream().mapToDouble(User::getSalary).reduce(0,(a, b) -> a + b);
+        double sumParallel = userList.parallelStream().mapToDouble(User::getSalary).reduce(0, (a, b) -> a + b);
         //4.有初始值的累加值（并行流），会导致每个流的初始值都计算进去
-        double sumParallel2 = userList.parallelStream().mapToDouble(User::getSalary).reduce(100,(a, b) -> a + b);
+        double sumParallel2 = userList.parallelStream().mapToDouble(User::getSalary).reduce(100, (a, b) -> a + b);
         //reduce其实就是执行指定方法操作，可以拿到每次操作的结果,常用于累加操作
         //System.out.println(sum);//900.0
         //System.out.println(sum2);//1000.0 初始值为100
@@ -28,7 +28,8 @@ public class ReduceTest {
         //5.求乘积之和，第二个参数x代表当前累计的值，y代表当前对象，第三个参数为每次的操作
         double sumParallel3 = userList.parallelStream().reduce(0.0, (x, y) -> x + (y.getUserId() * y.getSalary()), Double::sum);
     }
-    public void Test2(){
+
+    public void Test2() {
         //        List list = null;
 //        List or = Optional.fromNullable(list).or(Lists.newArrayList(new int[]{1, 2}));
         List<User> userList = Lists.newArrayList(new User[]{new User(1, "张三", 1.0d), new User(2, "李四", 2.0d)});

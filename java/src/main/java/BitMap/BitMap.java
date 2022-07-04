@@ -8,14 +8,14 @@ public class BitMap {
     private int capacity;
 
 
-    public BitMap(int capacity){
+    public BitMap(int capacity) {
         this.capacity = capacity;
 
         //1bit能存储8个数据，那么capacity数据需要多少个bit呢，capacity/8+1,右移3位相当于除以8
-        bits = new byte[(capacity >>3 )+1];
+        bits = new byte[(capacity >> 3) + 1];
     }
 
-    public void add(int num){
+    public void add(int num) {
         // num/8得到byte[]的index
         int arrayIndex = num >> 3;
 
@@ -26,7 +26,7 @@ public class BitMap {
         bits[arrayIndex] |= 1 << position;
     }
 
-    public boolean contain(int num){
+    public boolean contain(int num) {
         // num/8得到byte[]的index
         int arrayIndex = num >> 3;
 
@@ -34,10 +34,10 @@ public class BitMap {
         int position = num & 0x07;
 
         //将1左移position后，那个位置自然就是1，然后和以前的数据做&，判断是否为0即可
-        return (bits[arrayIndex] & (1 << position)) !=0;
+        return (bits[arrayIndex] & (1 << position)) != 0;
     }
 
-    public void clear(int num){
+    public void clear(int num) {
         // num/8得到byte[]的index
         int arrayIndex = num >> 3;
 

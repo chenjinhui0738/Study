@@ -17,16 +17,18 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 
     /**
      * 插入时的填充策略
+     *
      * @param metaObject
      */
     @Override
     public void insertFill(MetaObject metaObject) {
-        this.setFieldValByName("isDeleted", 1,metaObject);
-        this.setFieldValByName("createTime", new Date(),metaObject);
+        this.setFieldValByName("isDeleted", 1, metaObject);
+        this.setFieldValByName("createTime", new Date(), metaObject);
     }
 
     /**
      * 更新时的填充策略
+     *
      * @param metaObject
      */
     @Override

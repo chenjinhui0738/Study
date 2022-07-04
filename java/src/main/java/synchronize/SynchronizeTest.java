@@ -72,8 +72,9 @@ public class SynchronizeTest {
         });
         thread1.start();
         thread2.start();
-        
+
     }
+
     /**
      * 3.synchronized 作用 于一个代码块时，锁住的是所有代码块中配置的对象
      * (2)当锁的对象为静态变量，在不同实例直接运行不会会出现并发问题
@@ -103,35 +104,38 @@ public class SynchronizeTest {
      * 加在静态方法上
      */
     private synchronized static void print1() {
-        for (int i = 0; i <100 ; i++) {
-            System.out.println(Thread.currentThread().getName()+"："+i);
+        for (int i = 0; i < 100; i++) {
+            System.out.println(Thread.currentThread().getName() + "：" + i);
         }
     }
+
     /**
      * 加在成员方法上
      */
     private synchronized void print2() {
-        for (int i = 0; i <100 ; i++) {
-            System.out.println(Thread.currentThread().getName()+"："+i);
+        for (int i = 0; i < 100; i++) {
+            System.out.println(Thread.currentThread().getName() + "：" + i);
         }
     }
+
     /**
      * 加在代码块上
      */
-    private  void print3() {
-        synchronized(this){//this指的就是当前实例对象
-            for (int i = 0; i <100 ; i++) {
-                System.out.println(Thread.currentThread().getName()+"："+i);
+    private void print3() {
+        synchronized (this) {//this指的就是当前实例对象
+            for (int i = 0; i < 100; i++) {
+                System.out.println(Thread.currentThread().getName() + "：" + i);
             }
         }
     }
+
     /**
      * 加在代码块上
      */
-    private  void print4() {
-        synchronized(lock){//需要全局变量（字节码，常量这些，或者静态变量），如果不是全局变量即使锁住了还是会出现并发问题,因为成员变量存在于对象实例中，在不同实例时就会产生并发。
-            for (int i = 0; i <100 ; i++) {
-                System.out.println(Thread.currentThread().getName()+"："+i);
+    private void print4() {
+        synchronized (lock) {//需要全局变量（字节码，常量这些，或者静态变量），如果不是全局变量即使锁住了还是会出现并发问题,因为成员变量存在于对象实例中，在不同实例时就会产生并发。
+            for (int i = 0; i < 100; i++) {
+                System.out.println(Thread.currentThread().getName() + "：" + i);
             }
         }
     }

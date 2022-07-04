@@ -3,6 +3,7 @@ package jdk8;
 import com.alibaba.fastjson.JSONObject;
 
 import java.util.List;
+
 public class User {
     //用户Id
     Integer userId;
@@ -15,6 +16,7 @@ public class User {
 
     //
     List<Product> productList;
+
     public User(Integer userId, String userName) {
         this.userId = userId;
         this.userName = userName;

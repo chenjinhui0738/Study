@@ -9,7 +9,8 @@ public class DateUtil {
     private static final SimpleDateFormat sdf =
             new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static ThreadLocal<DateFormat> threadLocal = ThreadLocal.withInitial(
-            ()-> new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+            () -> new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+
     public static Date parse(String dateStr) {
         Date date = null;
         try {
@@ -19,6 +20,7 @@ public class DateUtil {
         }
         return date;
     }
+
     public static Date parseThreadLocal(String dateStr) {
         Date date = null;
         try {

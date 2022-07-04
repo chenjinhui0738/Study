@@ -40,33 +40,34 @@ public class MybatisPlusBaseMapperTests {
         Assert.assertEquals(4, userList.size());
         userList.forEach(System.out::println);
     }
+
     /**
      * 分页查询
      */
     @Test
     public void selectPage() {
         //BaseMapper分页
-        Page<User> page1 = new Page<>(1,3);
+        Page<User> page1 = new Page<>(1, 3);
         Page<User> userPage1 = userMapper.selectPage(page1, (Wrapper<User>) null);
         List<User> userList1 = userPage1.getRecords();
         userList1.forEach(System.out::println);
-        System.out.println("当前页："+page1.getCurrent());
-        System.out.println("每页显示的条数："+page1.getSize());
-        System.out.println("总记录数："+page1.getTotal());
-        System.out.println("总页数："+page1.getPages());
-        System.out.println("是否有上一页："+page1.hasPrevious());
-        System.out.println("是否有下一页："+page1.hasNext());
+        System.out.println("当前页：" + page1.getCurrent());
+        System.out.println("每页显示的条数：" + page1.getSize());
+        System.out.println("总记录数：" + page1.getTotal());
+        System.out.println("总页数：" + page1.getPages());
+        System.out.println("是否有上一页：" + page1.hasPrevious());
+        System.out.println("是否有下一页：" + page1.hasNext());
         //xml自定义分页
-        Page<User> page2 = new Page<>(1,3);
+        Page<User> page2 = new Page<>(1, 3);
         Page<User> userPage2 = userMapper.selectWithPage(page2, 15);
         List<User> userList2 = userPage2.getRecords();
         userList2.forEach(System.out::println);
-        System.out.println("当前页："+page2.getCurrent());
-        System.out.println("每页显示的条数："+page2.getSize());
-        System.out.println("总记录数："+page2.getTotal());
-        System.out.println("总页数："+page2.getPages());
-        System.out.println("是否有上一页："+page2.hasPrevious());
-        System.out.println("是否有下一页："+page2.hasNext());
+        System.out.println("当前页：" + page2.getCurrent());
+        System.out.println("每页显示的条数：" + page2.getSize());
+        System.out.println("总记录数：" + page2.getTotal());
+        System.out.println("总页数：" + page2.getPages());
+        System.out.println("是否有上一页：" + page2.hasPrevious());
+        System.out.println("是否有下一页：" + page2.hasNext());
     }
 
     /**
@@ -85,6 +86,7 @@ public class MybatisPlusBaseMapperTests {
         List<User> userList = userMapper.selectList(query);
         userList.forEach(System.out::println);
     }
+
     /**
      * or查询和and查询
      */
@@ -92,8 +94,8 @@ public class MybatisPlusBaseMapperTests {
     public void select2() {
         QueryWrapper<User> query = new QueryWrapper<>();
         //SELECT id,user_name,age,email,is_deleted,create_time FROM t_user WHERE is_deleted=1 AND (user_name LIKE '%J%' AND age BETWEEN 15 AND 20 OR email IS NOT NULL) ORDER BY id ASC
-        query.like("user_name","J").between("age",15,20).or().isNotNull("email")
-        .orderByAsc("id");
+        query.like("user_name", "J").between("age", 15, 20).or().isNotNull("email")
+             .orderByAsc("id");
         List<User> userList1 = userMapper.selectList(query);
         userList1.forEach(System.out::println);
         query.clear();
@@ -102,17 +104,19 @@ public class MybatisPlusBaseMapperTests {
         List<User> userList2 = userMapper.selectList(query);
         userList2.forEach(System.out::println);
     }
+
     /**
      * 子查询
      */
     @Test
     public void select3() {
         QueryWrapper<User> query = new QueryWrapper<>();
-        query.inSql("id","select id from t_user where id <=3");
+        query.inSql("id", "select id from t_user where id <=3");
         List<User> userList = userMapper.selectList(query);
         userList.forEach(System.out::println);
         query.clear();
     }
+
     /**
      * lambda条件查询
      */
@@ -129,13 +133,14 @@ public class MybatisPlusBaseMapperTests {
         List<User> userList = userMapper.selectList(query);
         userList.forEach(System.out::println);
     }
+
     /**
      * 条件更新
      */
     @Test
     public void update() {
         UpdateWrapper<User> updateWrapper1 = new UpdateWrapper<>();
-        updateWrapper1.between("age", 15, 20).set("email","update_email1");
+        updateWrapper1.between("age", 15, 20).set("email", "update_email1");
         int updateNum1 = userMapper.update(null, updateWrapper1);
         System.out.println(updateNum1);
         LambdaUpdateWrapper<User> updateWrapper2 = new LambdaUpdateWrapper<>();
@@ -145,6 +150,7 @@ public class MybatisPlusBaseMapperTests {
         int updateNum2 = userMapper.update(user, updateWrapper2);
         System.out.println(updateNum2);
     }
+
     /**
      * 插入
      */
@@ -164,6 +170,15 @@ public class MybatisPlusBaseMapperTests {
     @Test
     public void selectMapById() {
         Map<String, Object> userMap = userMapper.selectMapById(1L);
+        System.out.println(userMap);
+    }
+
+    /**
+     * 根据id查询返回map
+     */
+    @Test
+    public void selectMapByUserName() {
+        Map<String, Object> userMap = userMapper.selectMapByUserName("Jo");
         System.out.println(userMap);
     }
 

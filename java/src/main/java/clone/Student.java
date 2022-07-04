@@ -39,7 +39,7 @@ public class Student implements Cloneable {
     protected Student clone() {
         Student t = null;
         try {
-            t = (Student)super.clone();
+            t = (Student) super.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }

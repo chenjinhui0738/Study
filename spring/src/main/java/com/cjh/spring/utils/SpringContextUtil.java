@@ -17,14 +17,14 @@ public class SpringContextUtil implements ApplicationContextAware {
     /**
      * 通过名称获取bean
      */
-    public static <T>T getBean(String beanName){
+    public static <T> T getBean(String beanName) {
         return (T) applicationContext.getBean(beanName);
     }
 
     /**
      * 通过类型获取bean
      */
-    public static <T>T getBean(Class<T> clazz){
+    public static <T> T getBean(Class<T> clazz) {
         return (T) applicationContext.getBean(clazz);
     }
 }

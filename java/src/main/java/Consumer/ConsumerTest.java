@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 
 /**
  * 1、对入参要进行一系列操作，就可以用Consumer封装这些操作，供来其他人使用
- *
+ * <p>
  * 2、一个需要维护数据对象的类（如ArrayList底层维护的是一个数组：Object[] elementData），在封装的逻辑代码中需要使用到所维护的数据对象时，即可考虑使用Consumer为入参。
  */
 public class ConsumerTest {
@@ -23,6 +23,7 @@ public class ConsumerTest {
         Test3();
 
     }
+
     //1.对一组数据+2并求和
     // 其实就是一种优雅的数据处理方式，methodA先进行一次数据处理，然后通过回调接受回来的数据再进行处理，其实写在一个方法里也是完全可以的
     private static void Test1() {
@@ -35,11 +36,12 @@ public class ConsumerTest {
 
     private static void MethodA(Consumer<Integer> consumer) {
         //这里可以做一些数据处理，然后回调回去再做其他处理
-        List<Integer> list = Arrays.asList(new Integer[]{1,2,3});
+        List<Integer> list = Arrays.asList(new Integer[]{1, 2, 3});
         for (Integer integer : list) {
-            consumer.accept(integer+2);
+            consumer.accept(integer + 2);
         }
     }
+
     //2.求两数组最大数之和
     private static void Test2() {
         User user = new User();
@@ -53,10 +55,10 @@ public class ConsumerTest {
 
     }
 
-    private static void MethodB(BiConsumer<Integer,Integer> consumer) {
+    private static void MethodB(BiConsumer<Integer, Integer> consumer) {
         Integer max1 = Collections.max(Arrays.asList(new Integer[]{1, 2, 3}));
         Integer max2 = Collections.max(Arrays.asList(new Integer[]{4, 5, 6}));
-        consumer.accept(max1,max2);
+        consumer.accept(max1, max2);
     }
 
     /**
@@ -68,7 +70,7 @@ public class ConsumerTest {
         BiConsumer<User, Double> setSalary = User::setSalary;
         for (User user : list) {
             Double salary = getSalary.apply(user);
-            setSalary.accept(user,2*salary);
+            setSalary.accept(user, 2 * salary);
         }
         System.out.println(list.toString());
     }

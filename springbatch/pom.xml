@@ -41,6 +41,12 @@
             <groupId>org.springframework.batch</groupId>
             <artifactId>spring-batch-test</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>junit</artifactId>
+                    <groupId>junit</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!--mysql-->
         <dependency>

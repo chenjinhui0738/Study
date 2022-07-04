@@ -13,15 +13,16 @@ import javax.annotation.PostConstruct;
 public class SpringUtil extends /*WebApplicationObjectSupport*/ ApplicationObjectSupport {
     private static ApplicationContext applicationContext = null;
 
-    public static <T>T getBean(String beanName){
+    public static <T> T getBean(String beanName) {
         return (T) applicationContext.getBean(beanName);
     }
-    public static <T>T getBean(Class<T> clazz){
+
+    public static <T> T getBean(Class<T> clazz) {
         return (T) applicationContext.getBean(clazz);
     }
 
     @PostConstruct
-    public void init(){
+    public void init() {
         applicationContext = super.getApplicationContext();
     }
 }

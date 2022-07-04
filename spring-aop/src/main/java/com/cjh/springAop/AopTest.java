@@ -11,9 +11,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class AopTest {
     @Autowired
     private AopService aopService;
+
     //
     @Test
-    public void BeforeTest(){
+    public void BeforeTest() {
         aopService.func1();
 
     }
@@ -22,7 +23,7 @@ public class AopTest {
      * 在成功调用后才会通知
      */
     @Test
-    public void AfterReturningTest(){
+    public void AfterReturningTest() {
         aopService.func2();
     }
 
@@ -30,15 +31,17 @@ public class AopTest {
      * 不管成功与否，调用后都会通知
      */
     @Test
-    public void AfterTest(){
+    public void AfterTest() {
         aopService.func3();
     }
+
     @Test
-    public void AroundTest(){
+    public void AroundTest() {
         aopService.func4();
     }
+
     @Test
-    public void AfterThrowingTest(){
+    public void AfterThrowingTest() {
         aopService.func5();
     }
 }

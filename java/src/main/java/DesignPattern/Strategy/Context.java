@@ -15,7 +15,7 @@ public class Context {
         this.strategy = strategy;
     }
 
-    public void travel(){
+    public void travel() {
         strategy.travel();
     }
 }

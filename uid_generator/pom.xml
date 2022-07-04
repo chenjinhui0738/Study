@@ -15,7 +15,12 @@
         <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
         <mysql.version>8.0.22</mysql.version>
     </properties>
-
+    <!--引入父工程的pom,添加依赖时可以直接使用父工程的依赖-->
+    <parent>
+        <groupId>org.cjh</groupId>
+        <artifactId>Study</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -43,11 +48,25 @@
             <groupId>com.xfvape.uid</groupId>
             <artifactId>uid-generator</artifactId>
             <version>0.0.4-RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>mybatis</artifactId>
+                    <groupId>org.mybatis</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>mybatis-spring</artifactId>
+                    <groupId>org.mybatis</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
         </dependency>
     </dependencies>
 

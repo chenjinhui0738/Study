@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 public class NumUtil {
     public static int addNum = 0;
     private static final ThreadLocal<Integer> threadLocal = new ThreadLocal();
+
     public static int add10(int num) {
         addNum = num;
         try {
@@ -14,6 +15,7 @@ public class NumUtil {
         }
         return addNum + 10;
     }
+
     public static int add10ThreadLocal(int num) {
         threadLocal.set(num);
         try {

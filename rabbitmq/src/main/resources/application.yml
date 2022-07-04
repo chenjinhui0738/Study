@@ -1,0 +1,14 @@
+# 应用名称
+spring:
+  application:
+    name: rabbitmq
+# 应用服务 WEB 访问端口
+server:
+  port: 8080
+rabbitmq:
+  host: 127.0.0.1
+  port: 5672
+  username: guest
+  password: guest
+  publisher-confirm-type: correlated
+  publisher-returns: true

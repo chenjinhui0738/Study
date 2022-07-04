@@ -11,7 +11,8 @@ import java.util.concurrent.Future;
  */
 @Component
 public class AsyncTask {
-    @Async
+    //要使用该线程池，只需要在@Async注解上指定线程池Bean名称即可：
+    @Async("asyncThreadPoolTaskExecutor")
     public Future<String> doTaskOne() throws Exception {
         System.out.println("开始做任务一");
         long start = System.currentTimeMillis();
@@ -21,7 +22,8 @@ public class AsyncTask {
         return new AsyncResult<>("任务一完成");
     }
 
-    @Async
+    //要使用该线程池，只需要在@Async注解上指定线程池Bean名称即可：
+    @Async("asyncThreadPoolTaskExecutor")
     public Future<String> doTaskTwo() throws Exception {
         System.out.println("开始做任务二");
         long start = System.currentTimeMillis();

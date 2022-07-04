@@ -10,7 +10,6 @@ import java.util.List;
  * 4 V-Value 表示值
  * 5 N-Number 表示数值类型
  * 6 ? 表示不确定的Java类型
- *
  */
 public class FanXingTest {
     public static void main(String[] args) {
@@ -76,9 +75,10 @@ public class FanXingTest {
         System.out.println(generalInteger.get());
         System.out.println(generalString.get());
     }
+
     /**
      * 泛型擦除
-     *
+     * <p>
      * Java 类型的擦除过程为 首先，查找用来替换类型参数的具体类（该具体类般为Object），
      * 如果指定了类型参数的上界,则以该上界作为替换时的具体类;然后,把代码中的类型参数都替换为具体的类
      */

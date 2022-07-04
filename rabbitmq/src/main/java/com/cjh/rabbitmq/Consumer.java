@@ -1,9 +1,7 @@
 package com.cjh.rabbitmq;
 
-import com.rabbitmq.client.*;
-
 public class Consumer {
-    public Consumer() {
+    /*public Consumer() {
     }
 
     public static void main(String[] args) throws Exception {
@@ -50,5 +48,5 @@ public class Consumer {
             e.printStackTrace();
         }
 
-    }
+    }*/
 }

@@ -1,12 +1,7 @@
 package com.cjh.rabbitmq.directExchange;
 
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.QueueingConsumer;
-
 public class Consumer4DirectExchange {
-    public static void main(String[] args) throws Exception {
+    /*public static void main(String[] args) throws Exception {
 
 
         ConnectionFactory connectionFactory = new ConnectionFactory() ;
@@ -44,5 +39,5 @@ public class Consumer4DirectExchange {
             String msg = new String(delivery.getBody());
             System.out.println("收到消息：" + msg);
         }
-    }
+    }*/
 }

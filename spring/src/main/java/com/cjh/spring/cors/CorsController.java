@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CorsController {
     /**
      * 在方法上使用注解 @CrossOrigin
+     *
      * @return
      */
     //@CrossOrigin(origins = "*")
@@ -26,12 +27,13 @@ public class CorsController {
 
     /**
      * 4. 手动设置响应头(局部跨域)
+     *
      * @param response
      * @return
      */
     @RequestMapping("/index")
     public String index(HttpServletResponse response) {
-        response.addHeader("Access-Allow-Control-Origin","*");
+        response.addHeader("Access-Allow-Control-Origin", "*");
         return "index";
     }
 }

@@ -37,7 +37,7 @@ public class BatchConfiguration {
     private JobLauncher jobLauncher;
 
     @Autowired
-    private Job importUserJob ;
+    private Job importUserJob;
     /*@Bean
     public Job importUserJob() {
         return jobBuilderFactory.get("importUserJob")

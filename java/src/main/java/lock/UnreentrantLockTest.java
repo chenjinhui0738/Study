@@ -8,8 +8,10 @@ public class UnreentrantLockTest {
         new Thread(new UnreentrantLockTemp()).start();
     }
 }
+
 class UnreentrantLockTemp implements Runnable {
     private final UnreentrantLock unreentrantLock = new UnreentrantLock();
+
     @Override
     public void run() {
         a();
@@ -20,7 +22,7 @@ class UnreentrantLockTemp implements Runnable {
         try {
             System.out.println(Thread.currentThread().getName() + " a()");
             b();
-        }finally {
+        } finally {
             unreentrantLock.unlock();
         }
 
@@ -30,7 +32,7 @@ class UnreentrantLockTemp implements Runnable {
         unreentrantLock.lock();
         try {
             System.out.println(Thread.currentThread().getName() + " b()");
-        }finally {
+        } finally {
             unreentrantLock.unlock();
         }
     }

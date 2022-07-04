@@ -8,25 +8,31 @@ import java.util.concurrent.*;
 /**
  * BlockingQueue一般用于排队的列子，比如多线程的批量下载或者上传，有效控制队列高效执行，
  * queue里有数据的话，get会返回。
- *
+ * <p>
  * queue里没数据的话，get会block住，直到有其他线程add数据进来。
  */
 public class BlockingQueueTest {
     private static BlockingQueue<Integer> blockingQueue = new LinkedBlockingQueue<>(10);
+
     public static void main(String[] args) throws InterruptedException {
         //Test1();
         Test2();
 
     }
 
+    /**
+     * 向队列中放入10个数，在取出20个，在放入3个数
+     *
+     * @throws InterruptedException
+     */
     private static void Test2() throws InterruptedException {
         new Thread(() -> {
-            for(int i=0;i<10;i++){
+            for (int i = 0; i < 10; i++) {
                 blockingQueue.offer(i);
             }
         }).start();
         new Thread(() -> {
-            for(int i=0;i<20;i++){
+            for (int i = 0; i < 20; i++) {
                 try {
                     System.out.println(blockingQueue.take());//队列为空会阻塞当前线程
                 } catch (InterruptedException e) {
@@ -44,20 +50,23 @@ public class BlockingQueueTest {
         //先向队列放入10个数，又取20个数，为空时阻塞了2s,放入3个数后又继续取，直到为空阻塞
     }
 
+    /**
+     * 向队列中定时放入随机值，并打印值
+     */
     private static void Test1() {
         ScheduledExecutorService product = Executors.newScheduledThreadPool(1);
         Random random = new Random();
         product.scheduleAtFixedRate(() -> {
             int value = random.nextInt(101);
-            try{
+            try {
                 blockingQueue.offer(value);  //offer()方法就是网队列的尾部设置值
-            }catch(Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }, 0, 200, TimeUnit.MILLISECONDS);  //每100毫秒执行线程
 
         new Thread(() -> {
-            while(true){
+            while (true) {
                 try {
                     Thread.sleep(2000);
                     System.out.println("开始取值");

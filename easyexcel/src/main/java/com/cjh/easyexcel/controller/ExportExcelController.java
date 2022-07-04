@@ -20,21 +20,23 @@ public class ExportExcelController {
         SysSystemVO sysSystemVO = new SysSystemVO();
         sysSystemVO.setOffset(0);
         sysSystemVO.setLimit(200000);
-        exportExcelService.exportLessThan20w(sysSystemVO,response);
+        exportExcelService.exportLessThan20w(sysSystemVO, response);
     }
+
     @RequestMapping(value = "/exportLessThan100w")
     public void exportLessThan100w(HttpServletResponse response) throws Exception {
         SysSystemVO sysSystemVO = new SysSystemVO();
         sysSystemVO.setOffset(0);
         sysSystemVO.setLimit(1000000);
-        exportExcelService.exportLessThan100w(sysSystemVO,response);
+        exportExcelService.exportLessThan100w(sysSystemVO, response);
     }
+
     @RequestMapping(value = "/exportMoreThan100w")
     public void exportMoreThan100w(HttpServletResponse response) throws Exception {
         SysSystemVO sysSystemVO = new SysSystemVO();
         sysSystemVO.setOffset(0);
         sysSystemVO.setLimit(5000000);
-        exportExcelService.exportMoreThan100w(sysSystemVO,response);
+        exportExcelService.exportMoreThan100w(sysSystemVO, response);
     }
 
 }

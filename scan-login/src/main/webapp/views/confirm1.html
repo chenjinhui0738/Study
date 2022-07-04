@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>APP扫描之后的页面</title>
+    <meta http-equiv="expires" content="0">
+    <link href="../images/favicon.ico" rel="shortcut icon"/>
+</head>
+<body>
+<h3>恭喜，您已登录成功！</h3>
+<h5>1、该页面用于代替APP端的扫一扫功能；</h5>
+<h5>2、在登录页面F12，打开console后，点击切换成二维码登录；</h5>
+<h5>3、将console中打印的二维码内容贴入下面的输入框中，失去焦点后，登录页面的二维码状态会发生变化，变成扫描成功，请在手机上确认登录；</h5>
+<h5>4、下方会出现2个按钮，确认登录和取消登录，可以进行操作；</h5>
+<h5>5、确认登录后，登录页面完成的登录操作，并跳转到登录成功的页面；</h5>
+<h5>6、取消登录后，登录页面的二维码状态会刷新成已失效状态；</h5>
+<textarea rows="6" cols="100" id="qrcodeMark" placeholder="请输入二维码内容，并失去当前焦点" onblur="scanService()"></textarea>
+<button type="button" id="sure" onclick="scanLogin('login')" style="display:none;">确认登录</button>&nbsp;&nbsp;
+<button type="button" id="cancel" onclick="scanLogin('cancel')" style="display:none;">取消登录</button>
+</body>
+<script src="../js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    var BaseUrl = "http://localhost:8080";
+    var APP_NAME = "scan-login";
+    var storage = JSON.parse(sessionStorage.getItem(APP_NAME))
+
+    //调用扫一扫接口，传入扫描到的二维码内容
+    function scanService() {
+        var qrcodeMark = document.getElementById("qrcodeMark").value;
+        var params = JSON.stringify({qrcodeMark: qrcodeMark, token: storage.token});
+        $.ajax({
+            type: 'POST',
+            url: BaseUrl + '/login/scan',
+            dataType: "json",
+            contentType: "application/json",
+            data: params,
+            success: function (data) {
+                var isSuccess = data.isSuccess;
+                if (isSuccess == true) {
+                    $("#sure").css('display', 'block');
+                    $("#cancel").css('display', 'block');
+                } else {
+                    alert(data.responseMsg);
+                }
+            },
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', storage.token);
+            }
+        });
+    }
+
+    //确认登录
+    function scanLogin(type) {
+        var qrcodeMark = document.getElementById("qrcodeMark").value;
+        var params = JSON.stringify({
+            qrcodeMark: qrcodeMark,
+            userName: storage.user.userName,
+            type: type,
+            token: storage.token
+        });
+        $.ajax({
+            type: 'POST',
+            url: BaseUrl + '/login/scanLogin',
+            dataType: "json",
+            contentType: "application/json",
+            data: params,
+            success: function (data) {
+                var isSuccess = data.isSuccess;
+                if (isSuccess == true) {
+                    alert(data.responseMsg);
+                } else {
+                    alert(data.responseMsg);
+                }
+            },
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', storage.token);
+            }
+        });
+    }
+</script>
+</html>

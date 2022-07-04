@@ -17,7 +17,10 @@ public @interface UserSex {
     /**
      * 性别枚举
      */
-    public enum Sex{ MAN,WOMAN};
+    public enum Sex {MAN, WOMAN}
+
+    ;
+
     /**
      * 性别属性
      */

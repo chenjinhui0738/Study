@@ -17,11 +17,12 @@ import java.util.List;
 public class BloomFilterTest {
     private static int size = 1000000;//100万
 
-    /**基于guava的布隆过滤器
+    /**
+     * 基于guava的布隆过滤器
      * 使用布隆过滤器在100万条数据中查找数据
      */
     @Test
-    public void Test1(){
+    public void Test1() {
         //1.布隆过滤器方式查找数据
         BloomFilter<Integer> bloomFilter = BloomFilter.create(Funnels.integerFunnel(), size);
         for (int i = 0; i < size; i++) {
@@ -51,11 +52,10 @@ public class BloomFilterTest {
     }
 
     /**
-     *
      * 布隆过滤器的误判率
      */
     @Test
-    public void Test3(){
+    public void Test3() {
         BloomFilter<Integer> bloomFilter = BloomFilter.create(Funnels.integerFunnel(), size, 0.00000000000000001);
         for (int i = 0; i < size; i++) {
             bloomFilter.put(i);
@@ -69,12 +69,12 @@ public class BloomFilterTest {
         }
         System.out.println("误判的数量：" + list.size());
     }
+
     /**
-     *
      * 基于redission的布隆过滤器
      */
     @Test
-    public void Test4(){
+    public void Test4() {
         Config config = new Config();
         config.useSingleServer().setAddress("redis://localhost:6379");
         config.useSingleServer().setPassword("123");
@@ -83,7 +83,7 @@ public class BloomFilterTest {
 
         RBloomFilter<String> bloomFilter = redisson.getBloomFilter("phoneList");
         //初始化布隆过滤器：预计元素为100000000L,误差率为3%
-        bloomFilter.tryInit(100000000L,0.03);
+        bloomFilter.tryInit(100000000L, 0.03);
         //将号码10086插入到布隆过滤器中
         bloomFilter.add("10086");
 

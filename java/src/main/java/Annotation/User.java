@@ -1,10 +1,11 @@
 package Annotation;
+
 public class User {
     @UserName("张三")
     private String userName;
-    @UserSex(userSex= UserSex.Sex.MAN)
+    @UserSex(userSex = UserSex.Sex.MAN)
     private String sex;
-    @UserAccount(id=1,account="zhangsan",password="123456")
+    @UserAccount(id = 1, account = "zhangsan", password = "123456")
     private String accountInfo;
 
     public String getUserName() {

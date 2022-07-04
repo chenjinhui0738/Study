@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 /**
  * ThreadLocal其实就是每个新线程访问共享变量时，保存一份自己的线程副本。每个线程都是使用自己的值。
  * ThreadLocal相当于给每个线程都开辟了一个独立的存储空间，各个线程的ThreadLocal关联的实例互不干扰。
- *在多线程环境中，通常在使用不安全的类时使用ThreadLocal；按照各自线程的值进行操作某些操作
+ * 在多线程环境中，通常在使用不安全的类时使用ThreadLocal；按照各自线程的值进行操作某些操作
  */
 public class ThreadLocalTest {
     public final ThreadLocal threadLocal = new ThreadLocal();
@@ -24,8 +24,8 @@ public class ThreadLocalTest {
         ExecutorService service = Executors.newFixedThreadPool(20);
         for (int i = 0; i < 20; i++) {
             addNum = i;
-            service.execute(()->{
-                System.out.println(Thread.currentThread().getName()+":"+addNum);
+            service.execute(() -> {
+                System.out.println(Thread.currentThread().getName() + ":" + addNum);
             });
         }
         service.shutdown();
@@ -40,42 +40,45 @@ public class ThreadLocalTest {
         ExecutorService service = Executors.newFixedThreadPool(20);
         for (int i = 0; i < 20; i++) {
             int finalI = i;
-            service.execute(()->{
+            service.execute(() -> {
                 threadLocal.set(finalI);
-                System.out.println(Thread.currentThread().getName()+":"+threadLocal.get());
+                System.out.println(Thread.currentThread().getName() + ":" + threadLocal.get());
             });
         }
         service.shutdown();
     }
+
     //按顺序进行+10操作并输出
     @Test
     public void Test3() {
         ExecutorService service = Executors.newFixedThreadPool(20);
         for (int i = 0; i < 20; i++) {
             int num = i;
-            service.execute(()->{
-                System.out.println(num + " " +  NumUtil.add10(num));
+            service.execute(() -> {
+                System.out.println(num + " " + NumUtil.add10(num));
             });
         }
         service.shutdown();
     }
+
     //使用线程不安全的方式进行日期格式转换会报异常
     @Test
     public void Test4() {
         ExecutorService service = Executors.newFixedThreadPool(20);
         for (int i = 0; i < 20; i++) {
-            service.execute(()->{
+            service.execute(() -> {
                 System.out.println(DateUtil.parse("2019-06-01 16:34:30"));
             });
         }
         service.shutdown();
     }
+
     //使用线程安全的方式进行日期格式转换
     @Test
     public void Test5() {
         ExecutorService service = Executors.newFixedThreadPool(20);
         for (int i = 0; i < 20; i++) {
-            service.execute(()->{
+            service.execute(() -> {
                 System.out.println(DateUtil.parseThreadLocal("2019-06-01 16:34:30"));
             });
         }

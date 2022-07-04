@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletResponse;
 
-/**首先需安装openoffice
+/**
+ * 首先需安装openoffice
  * 在C:\Program Files (x86)\OpenOffice 4\program  目录下执行命令
  * soffice -headless -accept=“socket,host=127.0.0.1,port=8100;urp;” -nofirststartwizard
  * 启动openoffice服务
@@ -20,8 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 public class OpenOfficeController {
     @Autowired
     private OpenOfficeService openOfficeService;
+
     @PostMapping("/onlinePreview")
-    public void onlinePreview(@RequestParam("url") String url, HttpServletResponse response) throws Exception{
-        openOfficeService.onlinePreview(url,response);
+    public void onlinePreview(@RequestParam("url") String url, HttpServletResponse response) throws Exception {
+        openOfficeService.onlinePreview(url, response);
     }
 }

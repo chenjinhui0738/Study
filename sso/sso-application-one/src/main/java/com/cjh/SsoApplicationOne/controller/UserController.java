@@ -9,7 +9,8 @@ import java.security.Principal;
 @RestController
 public class UserController {
     /**
-     *获取用户信息
+     * 获取用户信息
+     *
      * @param principal
      * @return
      */
@@ -20,21 +21,23 @@ public class UserController {
 
     /**
      * 添加权限
+     *
      * @return
      */
     @GetMapping("auth/test1")
     @PreAuthorize("hasAuthority('user:add')")
-    public String authTest1(){
+    public String authTest1() {
         return "您拥有'user:add'权限";
     }
 
     /**
      * 更新权限
+     *
      * @return
      */
     @GetMapping("auth/test2")
     @PreAuthorize("hasAuthority('user:update')")
-    public String authTest2(){
+    public String authTest2() {
         return "您拥有'user:update'权限";
     }
 }

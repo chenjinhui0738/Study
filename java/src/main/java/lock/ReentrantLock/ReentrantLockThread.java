@@ -2,6 +2,7 @@ package lock.ReentrantLock;
 
 class ReentrantLockThread implements Runnable {
     private final MyReentrantLock reentrantLock = new MyReentrantLock();//这里也可以使用java自带的ReentrantLock可重入锁
+
     @Override
     public void run() {
         a();
@@ -12,7 +13,7 @@ class ReentrantLockThread implements Runnable {
         try {
             System.out.println(Thread.currentThread().getName() + " a()");
             b();
-        }finally {
+        } finally {
             reentrantLock.unlock();
         }
 
@@ -22,7 +23,7 @@ class ReentrantLockThread implements Runnable {
         reentrantLock.lock();
         try {
             System.out.println(Thread.currentThread().getName() + " b()");
-        }finally {
+        } finally {
             reentrantLock.unlock();
         }
     }

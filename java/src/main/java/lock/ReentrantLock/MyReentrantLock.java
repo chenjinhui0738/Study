@@ -13,7 +13,7 @@ public class MyReentrantLock {
             return;
         }
         //这句是很经典的“自旋”式语法，AtomicInteger中也有
-        for (;;) {
+        for (; ; ) {
             if (!owner.compareAndSet(null, current)) {
                 return;
             }

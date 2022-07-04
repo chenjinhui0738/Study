@@ -25,30 +25,31 @@ public class CopyOnWriteArrayListTest {
     private static void read(List list) throws InterruptedException {
         ExecutorService service = Executors.newFixedThreadPool(5);
         long begin = System.currentTimeMillis();
-        for(int i=0;i <5;i++){
+        for (int i = 0; i < 5; i++) {
             service.execute(() -> {
-                for(int j=0;j <500000;j++){
+                for (int j = 0; j < 500000; j++) {
                     list.get(j);
                 }
             });
         }
         service.shutdown();//关闭执行器
         service.awaitTermination(1, TimeUnit.MINUTES);//等待线程执行完后关闭，最多等待1分钟
-        System.out.println("read:"+(System.currentTimeMillis()-begin));
+        System.out.println("read:" + (System.currentTimeMillis() - begin));
     }
+
     private static List write(List list) throws InterruptedException {
         ExecutorService service = Executors.newFixedThreadPool(10);
         long begin = System.currentTimeMillis();
-        for(int i=0;i <10;i++){
+        for (int i = 0; i < 10; i++) {
             service.execute(() -> {
-                for(int j=0;j <500000;j++){
+                for (int j = 0; j < 500000; j++) {
                     list.add(j);
                 }
             });
         }
         service.shutdown();//关闭执行器
         service.awaitTermination(1, TimeUnit.MINUTES);//等待线程执行完后关闭，最多等待1分钟
-        System.out.println("write:"+(System.currentTimeMillis()-begin));
+        System.out.println("write:" + (System.currentTimeMillis() - begin));
         return list;
     }
 }

@@ -18,15 +18,16 @@ public class LiteralExtractController {
     public String reg(@RequestParam("file") MultipartFile file) throws IOException {
         String result = "";
         String filename = file.getOriginalFilename();
-        File save = new File(System.getProperty("user.dir")+"\\tesseract\\src\\main\\resources\\pic\\"+filename);
-        if (!save.exists()){
+        File save = new File(System.getProperty("user.dir") + "\\tesseract\\src\\main\\resources\\pic\\" + filename);
+        if (!save.exists()) {
             save.createNewFile();
         }
         file.transferTo(save);
-        String cmd = String.format("tesseract %s stdout -l %s",System.getProperty("user.dir")+"\\tesseract\\src\\main\\resources\\pic\\"+filename,"chi_sim");
+        String cmd = String.format("tesseract %s stdout -l %s", System.getProperty("user.dir") + "\\tesseract\\src\\main\\resources\\pic\\" + filename, "chi_sim");
         result = cmd(cmd);
         return result;
     }
+
     @RequestMapping("/test")
     public String test(String name) throws IOException {
         String result = "";
@@ -47,11 +48,8 @@ public class LiteralExtractController {
             return sb.toString();
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally
-        {
-            if (br != null)
-            {
+        } finally {
+            if (br != null) {
                 try {
                     br.close();
                 } catch (Exception e) {

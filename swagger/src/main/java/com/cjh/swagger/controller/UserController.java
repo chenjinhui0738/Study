@@ -6,23 +6,23 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * 用户controller
- *  @Api()
- *  用于类；表示标识这个类是swagger的资源
- *  tags–list说明,方法上的tags需要与类上的值一致，否则会出现多个list,不写则默认一致
- *  value–也是说明，可以使用tags替代
- *  但是tags如果有多个值，会生成多个list
+ *
+ * @Api() 用于类；表示标识这个类是swagger的资源
+ * tags–list说明,方法上的tags需要与类上的值一致，否则会出现多个list,不写则默认一致
+ * value–也是说明，可以使用tags替代
+ * 但是tags如果有多个值，会生成多个list
  */
 @RestController
 @RequestMapping(path = "/user")
-@Api(value="用户controller",tags={"用户操作接口"})
+@Api(value = "用户controller", tags = {"用户操作接口"})
 public class UserController {
     /**
      * 获取用户信息
      */
     @GetMapping("/getUserInfo")
     @ResponseBody
-    @ApiOperation(value="获取用户信息",tags={"用户操作接口"},notes="注意问题点")
-    public User getUserInfo(@ApiParam(value = "用户名", required = true)@RequestParam(name = "userName", defaultValue = "张三") String userName) {
+    @ApiOperation(value = "获取用户信息", tags = {"用户操作接口"}, notes = "注意问题点")
+    public User getUserInfo(@ApiParam(value = "用户名", required = true) @RequestParam(name = "userName", defaultValue = "张三") String userName) {
         User user = new User();
         user.setUserName(userName);
         return user;
@@ -40,8 +40,8 @@ public class UserController {
      */
     @GetMapping("/getUserInfoCopy")
     @ResponseBody
-    @ApiOperation(value="获取用户信息copy",tags={"用户操作接口"},notes="注意问题点")
-    public User getUserInfo(@ApiParam(name="id",value="用户id",required=true) Long id,@ApiParam(name="username",value="用户名") String userName) {
+    @ApiOperation(value = "获取用户信息copy", tags = {"用户操作接口"}, notes = "注意问题点")
+    public User getUserInfo(@ApiParam(name = "id", value = "用户id", required = true) Long id, @ApiParam(name = "username", value = "用户名") String userName) {
         User user = new User();
         user.setUserName(userName);
         return user;
@@ -56,14 +56,13 @@ public class UserController {
      * dataType–数据类型
      * paramType–参数类型
      * example–举例说明
-     *
      */
     @ApiOperation("查询测试")
     @GetMapping("select")
     //@ApiImplicitParam(name="name",value="用户名",dataType="String", paramType = "query")
     @ApiImplicitParams({
-            @ApiImplicitParam(name="name",value="用户名",dataType="string", paramType = "query",example="xingguo"),
-            @ApiImplicitParam(name="id",value="用户id",dataType="long", paramType = "query")})
-    public void select(){
+            @ApiImplicitParam(name = "name", value = "用户名", dataType = "string", paramType = "query", example = "xingguo"),
+            @ApiImplicitParam(name = "id", value = "用户id", dataType = "long", paramType = "query")})
+    public void select() {
     }
 }

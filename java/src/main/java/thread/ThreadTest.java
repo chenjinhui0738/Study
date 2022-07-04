@@ -21,9 +21,9 @@ public class ThreadTest {
      * 1.继承Thread
      * 2.实现Runnable接口
      * 3.线程池
-     *
+     * <p>
      * 运行线程必须使用start(),不能使用run();直接运行run方法相当在主线程运行run方法体，而不是新开一个线程运行
-     *
+     * <p>
      * 当run方法（线程体）运行完后线程自动结束
      */
     @Test
@@ -51,7 +51,7 @@ public class ThreadTest {
                 return new Random().nextInt();
             }
         });
-        System.out.println("通过线程池方式启动,带返回值:"+future.get());
+        System.out.println("通过线程池方式启动,带返回值:" + future.get());
         executorService.shutdown();
     }
 
@@ -64,18 +64,18 @@ public class ThreadTest {
             @Override
             public void run() {
                 //1.线程未终止则正常执行业务
-                if(!Thread.currentThread().isInterrupted()){
+                if (!Thread.currentThread().isInterrupted()) {
                     try {
                         System.out.println("执行业务中");
                         sleep(500);
                     } catch (Exception e) {
-                        Thread.currentThread().interrupt( );//执行业务异常则终止线程
+                        Thread.currentThread().interrupt();//执行业务异常则终止线程
                         e.printStackTrace();
                     }
 
                 }
                 //线程终止，处理线程结束前必要的一些资源释放和清理工作，比如释放锁、 存储数据到持久化层、发出异常通知等，用于实现线程的安全退出
-                if(Thread.currentThread().isInterrupted()){
+                if (Thread.currentThread().isInterrupted()) {
                     System.out.println("释放资源/数据持久化中");
                 }
             }
@@ -87,7 +87,7 @@ public class ThreadTest {
 
     /**
      * 线程加入:join方法
-     *
+     * <p>
      * 可以让线程按照先后顺序运行
      */
     @Test
@@ -125,15 +125,16 @@ public class ThreadTest {
         thread1.start();
 
     }
+
     /**
      * 线程等待：wait方法；wait是会释放锁资源的，而sleep不会
-     *
+     * <p>
      * 线程唤醒：notify方法
      */
     @Test
     public void Test4() throws InterruptedException {
         Thread thread1 = new Thread(() -> {
-            synchronized (object){
+            synchronized (object) {
                 System.out.println("线程1开始等待");
                 try {
                     object.wait();
@@ -145,7 +146,7 @@ public class ThreadTest {
 
         });
         Thread thread2 = new Thread(() -> {
-            synchronized (object){
+            synchronized (object) {
                 System.out.println("线程2开始等待");
                 try {
                     object.wait();
@@ -156,7 +157,7 @@ public class ThreadTest {
             }
         });
         Thread thread3 = new Thread(() -> {
-            synchronized (object){
+            synchronized (object) {
                 System.out.println("线程3开始等待");
                 try {
                     object.wait();
@@ -167,7 +168,7 @@ public class ThreadTest {
             }
         });
         Thread notifyThread = new Thread(() -> {
-            synchronized (object){
+            synchronized (object) {
                 System.out.println("通知唤醒开始");
                 object.notifyAll();
                 System.out.println("通知唤醒结束");
@@ -182,17 +183,17 @@ public class ThreadTest {
 
     /**
      * 后台守护线程： setDaemon 方法
-     *
+     * <p>
      * 当用户线程都结束，只剩守护线程时，jvm则会退出
-     *
      */
     @Test
     public void Test5() throws InterruptedException {
         Thread thread = new Thread(() -> {
-            for(int i=0;;i++){
+            for (int i = 0; ; i++) {
                 try {
                     Thread.sleep(1000);
-                } catch (InterruptedException ex) {   }
+                } catch (InterruptedException ex) {
+                }
                 System.out.println(i);
             }
         });
@@ -210,11 +211,11 @@ public class ThreadTest {
      */
     @Test
     public void Test6() {
-        for (int i=0;i<=100;i++){
+        for (int i = 0; i <= 100; i++) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    count ++;
+                    count++;
                 }
             }).start();
         }

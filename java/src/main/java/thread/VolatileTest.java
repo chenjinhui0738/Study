@@ -7,7 +7,7 @@ public class VolatileTest extends Thread {
     public static void main(String[] args) throws Exception {
         Thread thread1 = new Thread(() -> {
             System.out.println(stop);
-            while (stop==1) { //stop=false，不满足停止条件，继续执行
+            while (stop == 1) { //stop=false，不满足停止条件，继续执行
                 //do someting
             }
             System.out.println(stop);

@@ -2,7 +2,7 @@ package DesignPattern.AbstractFactory;
 
 import DesignPattern.Factory.Phone;
 
-public class ComputerFactory extends AbstractFactory{
+public class ComputerFactory extends AbstractFactory {
 
     @Override
     public Phone createPhone(String brand) {
@@ -11,11 +11,11 @@ public class ComputerFactory extends AbstractFactory{
 
     @Override
     public Computer createComputer(String brand) {
-        if("LianXiang".equals(brand)){
+        if ("LianXiang".equals(brand)) {
             return new LianXiang();
-        }else if("HuiPu".equals(brand)){
+        } else if ("HuiPu".equals(brand)) {
             return new HuiPu();
-        }else{
+        } else {
             return null;
         }
     }

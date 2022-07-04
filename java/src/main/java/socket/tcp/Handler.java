@@ -5,7 +5,7 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public class Handler extends Thread  {
+public class Handler extends Thread {
     Socket sock;
 
     public Handler(Socket sock) {
@@ -16,7 +16,7 @@ public class Handler extends Thread  {
     public void run() {
         try (InputStream input = this.sock.getInputStream()) {
             try (OutputStream output = this.sock.getOutputStream()) {
-                handle(sock,input, output);
+                handle(sock, input, output);
             }
         } catch (Exception e) {
             try {
@@ -27,11 +27,11 @@ public class Handler extends Thread  {
         }
     }
 
-    private void handle(Socket sock,InputStream input, OutputStream output) throws IOException {
+    private void handle(Socket sock, InputStream input, OutputStream output) throws IOException {
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(output, StandardCharsets.UTF_8));
         BufferedReader reader = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
         Scanner scanner = new Scanner(System.in);
-        for (;;) {
+        for (; ; ) {
             System.out.print(">>> "); // 打印提示
             String s = scanner.nextLine(); // 读取一行输入
             writer.write(s);

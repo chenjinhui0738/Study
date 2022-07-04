@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.net.InetSocketAddress;
 import java.util.List;
 import java.util.concurrent.locks.LockSupport;
+
 @Component
 public class CanalClient implements InitializingBean {
     @Autowired
@@ -20,6 +21,7 @@ public class CanalClient implements InitializingBean {
     public CanalClient(CanalProperties canalProperties) {
         this.canalProperties = canalProperties;
     }
+
     @Override
     public void afterPropertiesSet() throws Exception {
         CanalConnector connector = CanalConnectors.newSingleConnector(
@@ -65,7 +67,7 @@ public class CanalClient implements InitializingBean {
             try {
                 rowChage = CanalEntry.RowChange.parseFrom(entry.getStoreValue());
             } catch (Exception e) {
-                throw new RuntimeException("ERROR parse data:" + entry.toString(),e);
+                throw new RuntimeException("ERROR parse data:" + entry.toString(), e);
             }
             CanalEntry.EventType eventType = rowChage.getEventType();
             System.out.println(String.format("================> binlog[%s:%s] , name[%s,%s] , eventType : %s",

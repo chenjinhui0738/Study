@@ -18,6 +18,7 @@ import java.lang.reflect.Type;
 public class DecryptRequest extends RequestBodyAdviceAdapter {
     @Autowired
     EncryptProperties encryptProperties;
+
     @Override
     public boolean supports(MethodParameter methodParameter, Type targetType, Class<? extends HttpMessageConverter<?>> converterType) {
         //方法/参数上是否有@Decrypt注解
@@ -26,6 +27,7 @@ public class DecryptRequest extends RequestBodyAdviceAdapter {
 
     /**
      * 读取前的解密操作
+     *
      * @param inputMessage
      * @param parameter
      * @param targetType

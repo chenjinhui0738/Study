@@ -13,7 +13,7 @@ public class UdpClient {
         DatagramPacket packet = null;
         for (int i = 0; i < 5; i++) {
             // 发送:
-            String cmd = new String[] { "date", "time", "datetime", "weather", "hello" }[i];
+            String cmd = new String[]{"date", "time", "datetime", "weather", "hello"}[i];
             byte[] data = cmd.getBytes();
             packet = new DatagramPacket(data, data.length);
             ds.send(packet);

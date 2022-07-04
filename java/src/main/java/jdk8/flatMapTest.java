@@ -10,15 +10,16 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/**流的扁平化操作
+/**
+ * 流的扁平化操作
  * 将list中的list取出形成一个新的list，其实就是将list合并操作
  */
 public class flatMapTest {
     //计算用户拥有的商品总价格
     @Test
     public void Test1() {
-        List<User> userList = Lists.newArrayList(new User[]{new User(1, "hangman", 100d,Lists.newArrayList(new Product[]{new Product(1,10d)}))
-                ,new User(1, "list", 200d,Lists.newArrayList(new Product[]{new Product(2,20d),new Product(3,30d)}))});
+        List<User> userList = Lists.newArrayList(new User[]{new User(1, "hangman", 100d, Lists.newArrayList(new Product[]{new Product(1, 10d)}))
+                , new User(1, "list", 200d, Lists.newArrayList(new Product[]{new Product(2, 20d), new Product(3, 30d)}))});
         double sum = userList.stream().flatMap(user -> user.getProductList().stream()).mapToDouble(Product::getPrice).sum();
     }
 

@@ -17,7 +17,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @Configuration
 @EnableSwagger2
-@ConditionalOnProperty(prefix = "swagger.config", value = "enabled", havingValue = "true")  //只有当配置文件配置了swagger.config.enabled=true时，swagger才生效
+@ConditionalOnProperty(prefix = "swagger.config", value = "enabled", havingValue = "true")
+//只有当配置文件配置了swagger.config.enabled=true时，swagger才生效
 public class SwaggerConfig {
     @Bean
     public Docket createRestApi() {
@@ -28,6 +29,7 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any())
                 .build();
     }
+
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("springboot利用swagger构建api文档")

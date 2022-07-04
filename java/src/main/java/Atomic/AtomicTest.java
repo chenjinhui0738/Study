@@ -10,16 +10,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class AtomicTest {
     public static Integer a = 1;
     public static AtomicInteger b = new AtomicInteger(1);
+
     public static void main(String[] args) {
         Test1();
     }
 
     private static void Test1() {
-        for (int i = 0; i <100 ; i++) {
+        for (int i = 0; i < 100; i++) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    System.out.println("a="+a++);
+                    System.out.println("a=" + a++);
                     //System.out.println("b="+b.getAndIncrement());
                 }
             }).start();

@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * 4.如果此时线程池中的数量大于corePoolSize，缓冲队列workQueue满，并且线程池中的数量等于maximumPoolSize，那么通过 handler所指定的策略来处理此任务。
  * 5.当线程池中的线程数量大于 corePoolSize时，如果某线程空闲时间超过keepAliveTime，线程将被终止。这样，线程池可以动态的调整池中的线程数。
  * 总结即：处理任务判断的优先级为 核心线程corePoolSize、任务队列workQueue、最大线程maximumPoolSize，如果三者都满了，使用handler处理被拒绝的任务。
- *
+ * <p>
  * 线程池参数解释：
  * ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue, ThreadFactory threadFactory, RejectedExecutionHandler handler)
  * corePoolSize	核心线程数量，线程池维护线程的最少数量
@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
  * workQueue	线程池所使用的任务缓冲队列
  * threadFactory	线程工厂，用于创建线程，一般用默认的即可
  * handler	线程池对拒绝任务的处理策略
- *
+ * <p>
  * 拒绝策略：
  * 当线程池任务处理不过来的时候（什么时候认为处理不过来后面描述），可以通过handler指定的策略进行处理，ThreadPoolExecutor提供了四种策略：
  * 1.ThreadPoolExecutor.AbortPolicy:丢弃任务并抛出RejectedExecutionException异常；也是默认的处理方式。
@@ -33,12 +33,11 @@ import java.util.concurrent.TimeUnit;
  * 3.ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）
  * 4.ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务
  * 可以通过实现RejectedExecutionHandler接口自定义处理方式。
- *
+ * <p>
  * 线程使用队列：
  * 1.ArrayBlockingQueue： 这是一个由数组实现的容量固定的有界阻塞队列.
  * 2.SynchronousQueue： 没有容量，不能缓存数据；每个put必须等待一个take; offer()的时候如果没有另一个线程在poll()或者take()的话返回false。
  * 3.LinkedBlockingQueue： 这是一个由单链表实现的默认无界的阻塞队列。LinkedBlockingQueue提供了一个可选有界的构造函数，而在未指明容量时，容量默认为Integer.MAX_VALUE。
- *
  */
 public class ThreadPoolTest {
 
@@ -68,16 +67,17 @@ public class ThreadPoolTest {
             public void run() {
                 System.out.println("定时/周期线程池:延迟3秒执行");
             }
-        },3,TimeUnit.SECONDS);
+        }, 3, TimeUnit.SECONDS);
         //延迟3秒。每隔1秒执行
         scheduledThreadPool.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
                 System.out.println("定时/周期线程池:延迟3秒,每隔1秒执行");
             }
-        },3,1,TimeUnit.SECONDS);
+        }, 3, 1, TimeUnit.SECONDS);
 
     }
+
     @Test
     public void Test2() {
     }

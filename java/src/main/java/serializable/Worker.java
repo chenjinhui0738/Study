@@ -9,11 +9,13 @@ public class Worker implements Serializable {
     // transient修饰的变量不会被序列化
     private transient Integer salary;
     //静态变量属于类信息,不属于对象的状态,因此不会被序列化
-    private static Integer age =100;
-    public String getName(){
+    private static Integer age = 100;
+
+    public String getName() {
         return name;
     }
-    public void setName (String name) {
+
+    public void setName(String name) {
         this.name = name;
 
     }

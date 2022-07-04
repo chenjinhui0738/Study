@@ -23,6 +23,7 @@ public @interface UserAccount {
      * 账号
      */
     public String account() default "";
+
     /**
      * 密码
      */

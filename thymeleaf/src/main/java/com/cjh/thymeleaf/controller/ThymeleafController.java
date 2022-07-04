@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/thymeleaf")
 public class ThymeleafController {
     @RequestMapping("/test")
-    public String test(Model model){
-        model.addAttribute("msg","Thymeleaf模板测试");
+    public String test(Model model) {
+        model.addAttribute("msg", "Thymeleaf模板测试");
         return "test";
     }
 }

@@ -16,13 +16,13 @@ import java.util.stream.IntStream;
 
 /**
  * springboot+redis分布式锁-模拟抢单
- *
  */
 public class RedisTest {
     private static Logger logger = LoggerFactory.getLogger(RedisTest.class);
     JedisCommands jedisCom;
     JedisPool jedisPool;
     JedisPoolConfig config = new JedisPoolConfig();
+
     public RedisTest() {
         // 初始化JedisPool
         jedisPool = new JedisPool(config, "127.0.0.1", 6379, 2000);
@@ -38,6 +38,7 @@ public class RedisTest {
     private String shangpingKey = "computer_key";
     //获取锁的超时时间 秒
     private int timeout = 30 * 1000;
+
     @GetMapping("/qiangdan")
     public List<String> qiangdan() {
 
@@ -62,6 +63,7 @@ public class RedisTest {
         });
         return shopUsers;
     }
+
     /**
      * 模拟抢单动作
      *
@@ -118,6 +120,7 @@ public class RedisTest {
 
     /**
      * 锁设置
+     *
      * @param key
      * @param val
      * @return
@@ -142,6 +145,7 @@ public class RedisTest {
 
     /**
      * 锁删除
+     *
      * @param key
      * @param val
      * @return

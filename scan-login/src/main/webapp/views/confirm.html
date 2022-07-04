@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <title>涟漪特效按钮</title>
+    <link rel="stylesheet" href="../css/54.css">
+    <script src="../js/jquery-1.9.1.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="btn-box">
+    <button style="background: #26e5f6" id="sure" onclick="scanLogin('login')">确认登录</button>
+    <button style="background:#cbdedc!important;" id="cancel" onclick="scanLogin('cancel')">取消登录</button>
+</div>
+<script type="text/javascript">
+    //var qrcodeMark = window.location.href.split("=")[1];
+    var qrcodeMark = getqueryvalue("qrcodeMark");
+    var APP_NAME = "scan-login";
+    var storage = JSON.parse(sessionStorage.getItem(APP_NAME))
+    var userName = storage.user.username;
+    var token = storage.token;
+    $(function () {
+        alert(qrcodeMark)
+        alert(userName)
+        alert(token)
+        scanService();
+    });
+    // 获取所有按钮对象
+    const btns = document.querySelectorAll("button");
+    // 循环所有按钮,并为每一个按钮添加点击事件
+    btns.forEach(btn => {
+        btn.addEventListener("click", e => {
+            // 创建span元素,并设置其位置为鼠标点击的位置
+            let span = document.createElement("span");
+            span.style.left = e.offsetX + "px";
+            span.style.top = e.offsetY + "px";
+            // 将span元素添加到按钮标签里
+            btn.appendChild(span);
+            // 1秒后删除span元素
+            setTimeout(() => {
+                span.remove();
+            }, 1000);
+        })
+    })
+    var BaseUrl = "http://192.168.31.62:8080";
+
+    //调用扫一扫接口，传入扫描到的二维码内容
+    function scanService() {
+        console.info(JSON.parse(sessionStorage.getItem(APP_NAME)))
+        //var qrcodeMark = document.getElementById("qrcodeMark").value;
+        var params = JSON.stringify({qrcodeMark: qrcodeMark, token: token});
+        $.ajax({
+            type: 'POST',
+            url: BaseUrl + '/login/scan',
+            dataType: "json",
+            contentType: "application/json",
+            data: params,
+            success: function (data) {
+                var isSuccess = data.isSuccess;
+                if (isSuccess == true) {
+                    $("#sure").css('display', 'block');
+                    $("#cancel").css('display', 'block');
+                } else {
+                    alert(data.responseMsg);
+                }
+            },
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', token);
+            }
+        });
+    }
+
+    //确认登录
+    function scanLogin(type) {
+        //var qrcodeMark = document.getElementById("qrcodeMark").value;
+        var params = JSON.stringify({qrcodeMark: qrcodeMark, userName: userName, type: type, token: token});
+        $.ajax({
+            type: 'POST',
+            url: BaseUrl + '/login/scanLogin',
+            dataType: "json",
+            contentType: "application/json",
+            data: params,
+            success: function (data) {
+                var isSuccess = data.isSuccess;
+                if (isSuccess == true) {
+                    alert(data.responseMsg);
+                } else {
+                    alert(data.responseMsg);
+                }
+            },
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', token);
+            }
+        });
+    }
+
+    function getqueryvalue(queryname) {
+        var query = decodeURI(window.location.search.substring(1));
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == queryname) {
+                return pair[1];
+            }
+        }
+        return null;
+    }
+</script>
+</body>
+
+</html>

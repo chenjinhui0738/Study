@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
  */
 public class BitMapTest {
     @Test
-    public void Test1(){
+    public void Test1() {
         //BloomFilter.create()
     }
 }

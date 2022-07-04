@@ -18,7 +18,7 @@ public class GroupChatServer {
     /**
      * 编写run方法，处理客户端的请求
      */
-    public void run() throws  Exception{
+    public void run() throws Exception {
 
         //创建两个线程组
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
@@ -51,7 +51,7 @@ public class GroupChatServer {
             ChannelFuture channelFuture = b.bind(port).sync();
             //监听关闭
             channelFuture.channel().closeFuture().sync();
-        }finally {
+        } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }

@@ -22,8 +22,8 @@ public class AsyncTest {
         Future<String> task2 = asyncTask.doTaskTwo();
         Future<String> task3 = asyncTask.doTaskThree();
 
-        while(true) {
-            if(task1.isDone() && task2.isDone() && task3.isDone()) {
+        while (true) {
+            if (task1.isDone() && task2.isDone() && task3.isDone()) {
                 // 三个任务都调用完成，退出循环等待
                 break;
             }

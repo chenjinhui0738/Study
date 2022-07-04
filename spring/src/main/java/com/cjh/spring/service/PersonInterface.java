@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * 当application.properties配置了interface.user的值为test1时可以注入
  */
 @Component
-@ConditionalOnProperty(name = "interface.user",havingValue = "test1")
+@ConditionalOnProperty(name = "interface.user", havingValue = "test1")
 public interface PersonInterface {
     Person getPerson();
 }

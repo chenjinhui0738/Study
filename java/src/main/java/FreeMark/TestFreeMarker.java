@@ -12,7 +12,8 @@ import java.util.zip.ZipOutputStream;
 
 public class TestFreeMarker {
     private static org.slf4j.Logger logger = LoggerFactory.getLogger(TestFreeMarker.class);
-    private static String document= "document.xml";
+    private static String document = "document.xml";
+
     //outputStream 输出流可以自己定义 浏览器或者文件输出流
     public static void createDocx(Map dataMap, OutputStream outputStream) {
         ZipOutputStream zipout = null;
@@ -48,7 +49,7 @@ public class TestFreeMarker {
                             }
                             documentInput.close();
                         }
-                    }else if("docProps/custom.xml".equals(next.getName())){
+                    } else if ("docProps/custom.xml".equals(next.getName())) {
                         if (settingInput != null) {
                             while ((len = settingInput.read(buffer)) != -1) {
                                 zipout.write(buffer, 0, len);
@@ -67,8 +68,8 @@ public class TestFreeMarker {
         } catch (Exception e) {
             logger.info(String.valueOf(e));
             //logger.error();
-        }finally {
-            if(zipout!=null){
+        } finally {
+            if (zipout != null) {
                 try {
                     zipout.close();
                 } catch (IOException e) {
@@ -76,7 +77,7 @@ public class TestFreeMarker {
 
                 }
             }
-            if(outputStream!=null){
+            if (outputStream != null) {
                 try {
                     outputStream.close();
                 } catch (IOException e) {
@@ -85,16 +86,17 @@ public class TestFreeMarker {
             }
         }
     }
-    public static void main(String arg[]){
-        Map dataMap=new HashMap();
-        dataMap.put("name","zhangsan");
-        dataMap.put("fileMark","123456");
+
+    public static void main(String arg[]) {
+        Map dataMap = new HashMap();
+        dataMap.put("name", "zhangsan");
+        dataMap.put("fileMark", "123456");
 
 
         //指定输出docx路径
-        File outFile = new File("F:\\test\\test.docx") ;
+        File outFile = new File("F:\\test\\test.docx");
         try {
-            createDocx(dataMap,new FileOutputStream(outFile));
+            createDocx(dataMap, new FileOutputStream(outFile));
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }

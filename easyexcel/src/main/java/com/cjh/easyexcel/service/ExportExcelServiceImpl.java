@@ -23,8 +23,9 @@ import java.util.List;
 public class ExportExcelServiceImpl implements ExportExcelService {
     @Resource
     private SysSystemMapper sysSystemMapper;
+
     @Override
-    public ResultVO<Void> exportLessThan20w(SysSystemVO sysSystemVO, HttpServletResponse response) throws Exception  {
+    public ResultVO<Void> exportLessThan20w(SysSystemVO sysSystemVO, HttpServletResponse response) throws Exception {
         ServletOutputStream out = null;
         try {
             out = response.getOutputStream();
@@ -86,7 +87,7 @@ public class ExportExcelServiceImpl implements ExportExcelService {
     }
 
     @Override
-    public ResultVO<Void> exportLessThan100w(SysSystemVO sysSystemVO, HttpServletResponse response) throws Exception  {
+    public ResultVO<Void> exportLessThan100w(SysSystemVO sysSystemVO, HttpServletResponse response) throws Exception {
         ServletOutputStream out = null;
         try {
             out = response.getOutputStream();
@@ -158,7 +159,7 @@ public class ExportExcelServiceImpl implements ExportExcelService {
     }
 
     @Override
-    public ResultVO<Void> exportMoreThan100w(SysSystemVO sysSystemVO, HttpServletResponse response) throws Exception  {
+    public ResultVO<Void> exportMoreThan100w(SysSystemVO sysSystemVO, HttpServletResponse response) throws Exception {
         ServletOutputStream out = null;
         try {
             out = response.getOutputStream();

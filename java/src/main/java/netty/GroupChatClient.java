@@ -20,7 +20,7 @@ public class GroupChatClient {
         this.port = port;
     }
 
-    public void run() throws Exception{
+    public void run() throws Exception {
         EventLoopGroup group = new NioEventLoopGroup();
         try {
             Bootstrap bootstrap = new Bootstrap()
@@ -41,7 +41,7 @@ public class GroupChatClient {
             ChannelFuture channelFuture = bootstrap.connect(host, port).sync();
             //得到channel
             Channel channel = channelFuture.channel();
-            System.out.println("-------" + channel.localAddress()+ "--------");
+            System.out.println("-------" + channel.localAddress() + "--------");
             //客户端需要输入信息，创建一个扫描器
             Scanner scanner = new Scanner(System.in);
             while (scanner.hasNextLine()) {
@@ -49,7 +49,7 @@ public class GroupChatClient {
                 //通过channel 发送到服务器端
                 channel.writeAndFlush(msg + "\r\n");
             }
-        }finally {
+        } finally {
             group.shutdownGracefully();
         }
     }

@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class SpinLock {
     private AtomicReference<Thread> cas = new AtomicReference<Thread>();
+
     public void lock() {
         Thread current = Thread.currentThread();
         // 利用CAS
@@ -14,11 +15,12 @@ public class SpinLock {
         while (!cas.compareAndSet(null, current)) {
             // DO nothing
         }
-        System.out.println(current.getName()+"=》"+"上锁了");
+        System.out.println(current.getName() + "=》" + "上锁了");
     }
+
     public void unlock() {
         Thread current = Thread.currentThread();
         cas.compareAndSet(current, null);
-        System.out.println(current.getName()+"=》"+"解锁了");
+        System.out.println(current.getName() + "=》" + "解锁了");
     }
 }

@@ -3,8 +3,9 @@ package lock.ReentrantLock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ReentrantLockTest {
-    public static ReentrantLock lock = new ReentrantLock() ;
+    public static ReentrantLock lock = new ReentrantLock();
     public static int i = 0;
+
     public static void main(String[] args) throws InterruptedException {
         //Test1();
         Test2();
@@ -16,6 +17,7 @@ public class ReentrantLockTest {
     private static void Test1() {
         new Thread(new ReentrantLockThread()).start();
     }
+
     /**
      *
      */
@@ -23,19 +25,19 @@ public class ReentrantLockTest {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int j = 0; j <100 ; j++) {
+                for (int j = 0; j < 100; j++) {
                     //lock.lock();//可以对同一把锁多次加锁或者解锁
                     i++;
                     System.out.println(i);
-                   // lock.unlock();
+                    // lock.unlock();
                 }
             }
         }).start();
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int j = 0; j <100 ; j++) {
-                   // lock.lock();//可以对同一把锁多次加锁或者解锁
+                for (int j = 0; j < 100; j++) {
+                    // lock.lock();//可以对同一把锁多次加锁或者解锁
                     i++;
                     System.out.println(i);
                     //lock.unlock();

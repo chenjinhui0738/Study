@@ -17,6 +17,7 @@ public class EncryptResponse implements ResponseBodyAdvice<RespBean> {
     private ObjectMapper om = new ObjectMapper();
     @Autowired
     EncryptProperties encryptProperties;
+
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
         //方法上是否有@Encrypt注解
@@ -25,6 +26,7 @@ public class EncryptResponse implements ResponseBodyAdvice<RespBean> {
 
     /**
      * 写回前的加密操作
+     *
      * @param body
      * @param returnType
      * @param selectedContentType
@@ -37,9 +39,9 @@ public class EncryptResponse implements ResponseBodyAdvice<RespBean> {
     public RespBean beforeBodyWrite(RespBean body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
         byte[] keyBytes = encryptProperties.getKey().getBytes();
         try {
-            if (body.getMsg()!=null) {
+            if (body.getMsg() != null) {
                 //msg属性加密
-                body.setMsg(AESUtils.encrypt(body.getMsg().getBytes(),keyBytes));
+                body.setMsg(AESUtils.encrypt(body.getMsg().getBytes(), keyBytes));
             }
             if (body.getObj() != null) {
                 //obj属性加密

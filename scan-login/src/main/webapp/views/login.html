@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <title>不偷看密码的超萌猫头鹰</title>
+    <link rel="stylesheet" href="../css/50.css">
+    <style type="text/css">
+        .p_div_refresh {
+            width: 24px;
+            height: 22px;
+            padding-bottom: 2px;
+        }
+
+        .p_input {
+            background-color: #a2cabb;
+        }
+
+        #input_head, #qrcode_head p {
+            font-size: 12px;
+            font-family: "华文细黑";
+            line-height: 10px;
+            color: #576071;
+        }
+
+        #head_p {
+            position: absolute;
+            width: 108px;
+            height: 10px;
+            margin-top: 24px;
+            margin-left: 150px;
+        }
+
+        #input_head {
+            width: 100%;
+            height: 72px;
+        }
+
+        #input_head, #qrcode_head p {
+            font-size: 12px;
+            font-family: "华文细黑";
+            line-height: 10px;
+            color: #576071;
+        }
+
+        #filter_div {
+            position: absolute;
+            width: 360px;
+            height: 360px;
+            right: -5.5%;
+            background-color: #EBF0FB;
+            filter: alpha(opacity=50);
+            -moz-opacity: 0.5;
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        #input_nav {
+            width: 320px;
+            height: 360px;
+            display: block;
+        }
+
+        #qrcode_nav {
+            width: 320px;
+            height: 360px;
+            display: none;
+        }
+
+        #qrcode_head {
+            width: 100%;
+            height: 72px;
+        }
+
+        #qrcode_content {
+            position: absolute;
+            width: 100%;
+            height: 304px;
+            margin-left: -25px;
+        }
+
+        #qr_code {
+            width: 223px;
+            height: 223px;
+            position: absolute;
+            margin-left: 69px;
+        }
+
+        #mask_qrcode {
+            width: 223px;
+            height: 223px;
+            position: absolute;
+            margin-left: 69px;
+            display: none;
+        }
+
+        .retry_qrcode {
+            width: 223px;
+            height: 223px;
+            z-index: 999;
+            background-color: #FFFFFF;
+            position: absolute;
+            filter: alpha(opacity=95);
+            -moz-opacity: 0.95;
+            opacity: 0.95;
+        }
+
+        #mask_confirm {
+            width: 223px;
+            height: 223px;
+            position: absolute;
+            margin-left: 69px;
+            display: none;
+        }
+
+        #scan_icon {
+            width: 223px;
+            height: 20px;
+            position: absolute;
+            margin-left: 69px;
+            margin-top: 234px;
+        }
+
+        /*大写提示框*/
+        .capslock {
+            padding: 0 2px 2px 26px;
+            position: absolute;
+            margin: 100px 0 0 10px;
+            width: 130px;
+            height: 30px;
+            line-height: 30px;
+            display: none;
+            overflow: hidden;
+            z-index: 4;
+            color: #124fed;
+            background: url(../images/capslock.png) no-repeat;
+            background-size: cover;
+        }
+
+        .capslock {
+            font-size: 14px;
+            color: red;
+            padding-top: 6px;
+        }
+    </style>
+    <script src="../js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="../js/qrcode.js"></script>
+    <script src="../js/jquery.qrcode.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#password').focus(function () {
+                // 密码框获得焦点，追加样式.password
+                $('#owl').addClass('password');
+            }).blur(function () {
+                // 密码框失去焦点，移除样式.password
+                $('#owl').removeClass('password');
+            })
+        })
+    </script>
+</head>
+
+<body>
+<div class="login-box">
+    <div class="owl" id="owl">
+        <div class="hand"></div>
+        <div class="hand hand-r"></div>
+        <div class="arms">
+            <div class="arm"></div>
+            <div class="arm arm-r"></div>
+        </div>
+    </div>
+    <div id="filter_div"></div>
+    <div id="input_nav">
+        <div id="input_head">
+            <img src="../images/tips@2x.png"
+                 style="position: absolute; margin-left: 125px; margin-top: 14px; width: 151px; height: 30px;">
+            <img src="../images/shield@2x.png"
+                 style="position: absolute; margin-left: 130px; margin-top: 20px; width: 16px; height: 18px;">
+            <div id="head_p">
+                <p>扫码登录更安全便捷</p>
+            </div>
+            <img src="../images/QR@2x.png" onclick="qrcode_login()"
+                 style="position: absolute; margin-top: 6px; margin-left: 260px; width: 66px; height: 66px; cursor: pointer;">
+        </div>
+        <div class="input-box">
+            <input type="text" id="userName" class="p_input" placeholder="请输入您的账号">
+            <input type="password" id="password" class="p_input" placeholder="请输入您的密码" id="password">
+            <input type="text" class="p_input" placeholder="请输入验证码" id="rand">
+            <div style="float: right; margin: 117px 0 10px 0px; position: absolute; left: 188px;">
+                <img src="#" id="safecode"
+                     style="width: 80px; height: 26px; border: none;"/> <img
+                    src="../images/icon_refresh.png" class="p_div_refresh"
+                    onclick="reloadcode('true')">
+            </div>
+            <button onclick="onLogin()" id="onLogin">登录</button>
+        </div>
+    </div>
+    <div id="qrcode_nav">
+        <div id="qrcode_head">
+            <img src="../images/tips@2x.png"
+                 style="position: absolute; margin-left: 120px; margin-top: 14px; width: 151px; height: 30px;"/>
+            <img src="../images/user@2x.png"
+                 style="position: absolute; margin-left: 127px; margin-top: 20px; width: 16px; height: 18px;"/>
+            <div id="head_p">
+                <p>使用账号密码登录</p>
+            </div>
+            <img src="../images/computer@2x.png" onclick="acc_login()"
+                 style="position: absolute; margin-top: 6px; margin-left: 280px; width: 42.8px; height: 50px; cursor: pointer;"/>
+        </div>
+        <div id="qrcode_content">
+            <div id="qr_code"></div>
+            <div id="mask_qrcode">
+                <div class="retry_qrcode">
+                    <div style="width: 109px; height: 25px; margin-left: 61px; margin-top: 66px;">
+                        <p style="font-size: 16px; color: #333333; font-family: 华文细黑; line-height: 25px; font-weight: 600;">
+                            二维码已失效</p>
+                    </div>
+                </div>
+                <div class="retry_button"
+                     style="position: absolute; width: 168px; height: 44px; margin-left: 32px; margin-top: 112px; z-index: 999;">
+                    <button type="button" onclick="retry_qrcode_login()"
+                            style="width: 168px; height: 44px; border: none; background-color: #265Df6; color: #FFFFFF; font-size: 13px; line-height: 18px;">
+                        请点击刷新
+                    </button>
+                </div>
+            </div>
+            <div id="mask_confirm">
+                <div class="retry_qrcode">
+                    <div
+                            style="width: 109px; height: 25px; margin-left: 61px; margin-top: 66px; text-align: center;">
+                        <p
+                                style="font-size: 16px; color: #333333; font-family: 华文细黑; line-height: 25px; font-weight: 600;">
+                            扫描成功</p>
+                        <p
+                                style="font-size: 12px; color: #333333; font-family: 华文细黑; line-height: 25px; font-weight: 400;">
+                            请在手机上确认登录</p>
+                    </div>
+                </div>
+                <div class="retry_button"
+                     style="position: absolute; width: 168px; height: 44px; text-align: center; margin-left: 32px; margin-top: 142px; z-index: 999;">
+                    <a onclick="retry_qrcode_login()" href="javascript:void(0)"
+                       style="width: 168px; height: 44px; color: red; font-size: 13px; line-height: 18px;">返回二维码登录</a>
+                </div>
+            </div>
+            <div id="scan_icon">
+                <div style="height: 20px; float: left">
+                    <img src="../images/scan@2x.png"
+                         style="width: 24px; height: 20px;"/>
+                </div>
+                <div style="height: 20px; float: left;">
+                    <p>
+                        &nbsp;&nbsp;请使用&nbsp;&nbsp;<a href="#" target="_blank">APP</a>&nbsp;&nbsp;扫一扫登录
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+
+    var isContinue = true;
+    var text = "";
+    var BaseUrl = "http://192.168.31.62:8080";
+    var APP_NAME = "scan-login";
+    var interval;
+
+    $(function () {
+        reloadcode("false");
+    });
+
+
+    //捕获回车事件登录
+    document.onkeydown = function (event_e) {
+        if (window.event)
+            event_e = window.event;
+        var int_keycode = event_e.charCode || event_e.keyCode;
+        if (int_keycode == 13) {
+            onLogin();
+        }
+    }
+    //界面加载自动聚焦到用户名输入框
+    document.getElementById("userName").focus();
+
+    //使用ajax的方式提交登录信息，然后通过json数据格式将返回结果返回
+    function onLogin() {
+        // 获取是否记住密码登陆
+        var ifLogin = $("#ifLogin").val();
+        //点击登录按钮之后不可重复再点击
+        $("#onLogin").attr('disabled', 'disabled');
+        $("#onLogin").text("登录中...");
+        $("#onLogin").focus();
+        var userName = document.getElementById("userName").value;
+        var password = document.getElementById("password").value;
+        var rand = document.getElementById("rand").value;
+        //验证码的key
+        var verifyCodeKey = sessionStorage.getItem(APP_NAME + "_verifyCodeKey");
+
+        if (userName == "" || userName == null) {
+            flag = "请输入您的账号信息";
+            $("#userName").focus();
+            $("#onLogin").removeAttr('disabled');
+            $("#onLogin").text("登　　录");
+            alert(flag);
+            return
+        }
+        if (password == "" || password == null) {
+            flag = "请输入您的密码信息";
+            $("#password").focus();
+            $("#onLogin").removeAttr('disabled');
+            $("#onLogin").text("登　　录");
+            alert(flag);
+            return
+        }
+        if (rand == "" || rand == null) {
+            flag = "请输入右侧图片中的数字验证码";
+            $("#rand").focus();
+            $("#onLogin").removeAttr('disabled');
+            $("#onLogin").text("登　　录");
+            alert(flag);
+            return
+        }
+        var params = {userName: userName, password: password, verifyCode: rand, verifyCodeKey: verifyCodeKey};
+        params = JSON.stringify(params);
+        $.ajax({
+            type: 'POST',
+            url: BaseUrl + '/login/token',
+            dataType: "json",
+            contentType: "application/json",
+            data: params,
+            success: function (data) {
+                var isSuccess = data.isSuccess;
+                if (isSuccess == true) {
+                    sessionStorage.setItem(APP_NAME, JSON.stringify(data.data));
+                    alert(JSON.stringify(sessionStorage.getItem(APP_NAME)))
+                    window.location.href = "confirm1.html";
+                } else {
+                    $("#onLogin").removeAttr('disabled');
+                    $("#onLogin").text("登　　录");
+                    alert(data.responseMsg);
+                    reloadcode();
+                }
+            }
+        });
+    }
+
+    //切换成二维码登录
+    function qrcode_login() {
+        $("#mask_qrcode").hide();
+        $("#mask_confirm").hide();
+        $("#input_nav").hide();
+        $("#qrcode_nav").show();
+        $("#qr_code").html("");
+        //先获取二维码的唯一编码
+        var params = {qrcodeMark: text};
+        params = JSON.stringify(params);
+        $.ajax({
+            type: 'POST',
+            url: BaseUrl + '/login/getQrcodeContent',
+            dataType: "json",
+            contentType: "application/json",
+            data: params,
+            success: function (data) {
+                var isSuccess = data.isSuccess;
+                if (isSuccess == true) {
+                    text = data.data;
+                    console.log("二维码内容：");
+                    console.log(text);
+                    var storage = JSON.parse(sessionStorage.getItem(APP_NAME))
+                    alert(storage)
+                    $("#qr_code").qrcode({
+                        width: 223, //宽度
+                        height: 223, //高度
+                        typeNumber: -1,//计算模式
+                        correctLevel: 2,//二维码纠错级别
+                        //text: BaseUrl+"/views/confirm.html?qrcodeMark="+data.data+"&userName="+storage.user.userName+"&token="+storage.token//任意内容
+                        text: BaseUrl + "/views/confirm.html?qrcodeMark=" + data.data//任意内容
+                        //text: BaseUrl+"/login/scan?qrcodeMark="+data.data//任意内容
+                    });
+                    alert(storage.user.userName)
+                    alert(storage.token)
+                    //不断向后台发起请求检测当前二维码的状态
+                    isContinue = true;
+                    interval = setInterval("longPolling('" + text + "')", 3000);
+                } else {
+                    alert(data.responseMsg);
+                }
+            }
+        });
+    }
+
+    //切换成账号密码登录
+    function acc_login() {
+        $("#input_nav").show();
+        $("#qrcode_nav").hide();
+        isContinue = false;
+    }
+
+    //重新获取登录二维码
+    function retry_qrcode_login() {
+        isContinue = true;
+        qrcode_login();
+        $("#mask_qrcode").hide();
+        $("#mask_confirm").hide();
+    }
+
+    //轮询检测当前二维码的状态
+    function longPolling(context) {
+        if (isContinue == false) {
+            return
+        }
+        var params = {qrcodeMark: context};
+        params = JSON.stringify(params);
+        $.ajax({
+            type: 'POST',
+            url: BaseUrl + '/login/qrcodeCheckLogin',
+            dataType: "json",
+            contentType: "application/json",
+            data: params,
+            //timeout: 10000,
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $("#state").append("[state: " + textStatus + ", error: " + errorThrown + " ]<br/>");
+                /*if (textStatus == "timeout") { // 请求超时
+                    longPolling(text,type); // 递归调用
+                	// 其他错误，如网络错误等
+                } else {
+                    longPolling(text,type);
+                }*/
+            },
+            success: function (data, textStatus) {
+                $("#state").append("[state: " + textStatus + ", data: { " + data + "} ]<br/>");
+                if (textStatus == "success") { // 请求成功
+                    var resCode = data.responseCode;
+                    //确认登录情况下停止重复执行请求
+                    if (resCode == 1110) {
+                        clearInterval(interval);
+                        //登录成功
+                        window.location.href = "index.html";
+                    }
+                    if (resCode == 1101) {
+                        //如果是当前请求的二维码内容失效时提在页面提示
+                        if (context == text) {
+                            //二维码已失效，添加遮罩
+                            $("#mask_confirm").hide();
+                            $("#mask_qrcode").show();
+                        }
+                    } else if (resCode == 1103) {
+                        //取消登录，二维码失效，添加遮罩
+                        $("#mask_confirm").hide();
+                        $("#mask_qrcode").show();
+                    } else if (resCode == 1102) {
+                        //扫描成功，请在手机上确认登录
+                        console.info($("#mask_confirm"))
+                        $("#mask_confirm").show();
+                    }
+                }
+            }
+        });
+    }
+
+    function reloadcode(refresh) {
+        var params = JSON.stringify({});
+        $.ajax({
+            type: 'POST',
+            url: BaseUrl + '/login/getVerifyCode',
+            dataType: "json",
+            contentType: "application/json",
+            data: params,
+            success: function (data) {
+                var isSuccess = data.isSuccess;
+                if (isSuccess == true) {
+                    sessionStorage.setItem(APP_NAME + "_verifyCodeKey", data.data.verifyCodeKey);
+                    $("#safecode").attr('src', "data:image/jpeg;base64," + data.data.img);
+                }
+            }
+        });
+    }
+
+
+    //密码大写输入提示
+    function capitalTip(id) {
+        $('#' + id).after('<div class="capslock" id="capital_password"><span>大写锁定已开启</span></div>');
+        var capital = false; //聚焦初始化，防止刚聚焦时点击Caps按键提示信息显隐错误
+
+        // 获取大写提示的标签，并提供大写提示显示隐藏的调用接口
+        var capitalTip = {
+            $elem: $('#capital_' + id),
+            toggle: function (s) {
+                if (s === 'none') {
+                    this.$elem.hide();
+                } else if (s === 'block') {
+                    this.$elem.show();
+                } else if (this.$elem.is(':hidden')) {
+                    this.$elem.show();
+                } else {
+                    this.$elem.hide();
+                }
+            }
+        }
+        $('#' + id).on('keydown.caps', function (e) {
+            if (e.keyCode === 20 && capital) { // 点击Caps大写提示显隐切换
+                capitalTip.toggle();
+            }
+        }).on('focus.caps', function () {
+            capital = false
+        }).on('keypress.caps', function (e) {
+            capsLock(e)
+        }).on('blur.caps', function (e) {
+            //输入框失去焦点，提示隐藏
+            capitalTip.toggle('none');
+        });
+
+        function capsLock(e) {
+            var keyCode = e.keyCode || e.which;// 按键的keyCode
+            var isShift = e.shiftKey || keyCode === 16 || false;// shift键是否按住
+            if (keyCode === 9) {
+                capitalTip.toggle('none');
+            } else {
+                //指定位置的字符的 Unicode 编码 , 通过与shift键对于的keycode，就可以判断capslock是否开启了
+                // 90 Caps Lock 打开，且没有按住shift键
+                if (((keyCode >= 65 && keyCode <= 90) && !isShift) || ((keyCode >= 97 && keyCode <= 122) && isShift)) {
+                    // 122 Caps Lock打开，且按住shift键
+                    capitalTip.toggle('block'); // 大写开启时弹出提示框
+                    capital = true;
+                } else {
+                    capitalTip.toggle('none');
+                    capital = true;
+                }
+            }
+        }
+    };
+
+    //调用提示
+    capitalTip('password');
+
+</script>
+
+</html>

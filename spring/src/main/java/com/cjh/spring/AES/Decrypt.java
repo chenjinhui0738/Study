@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
  * 解密注解
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD,ElementType.PARAMETER})
+@Target({ElementType.METHOD, ElementType.PARAMETER})
 public @interface Decrypt {
 }

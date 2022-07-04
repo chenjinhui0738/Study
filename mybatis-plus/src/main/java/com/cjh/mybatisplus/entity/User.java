@@ -23,7 +23,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class User {
     //默认id为主键,value为表中主键对应的字段值,type为自增方式，默认为雪花分布式id
-    @TableId(value="id",type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
     @TableField("user_name")
     private String userName;

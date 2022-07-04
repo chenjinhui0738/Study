@@ -16,13 +16,13 @@ public class DecryptController {
     @GetMapping("/user")
     @Encrypt
     public RespBean getUser() {
-        User user = new User(1,"张三");
+        User user = new User(1, "张三");
         return RespBean.ok("ok", user);
     }
 
     @PostMapping("/user")
     public RespBean addUser(@RequestBody @Decrypt User user) {
-        User user1 = new User(1,"张三");
+        User user1 = new User(1, "张三");
         System.out.println(Objects.toString(user1));
         return RespBean.ok("ok", user);
     }

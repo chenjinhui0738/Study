@@ -3,6 +3,7 @@ package com.cjh.rabbitmq.topicExchange;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+
 public class Producer4TopicExchange {
     public static void main(String[] args) throws Exception {
 
@@ -24,9 +25,9 @@ public class Producer4TopicExchange {
         //5 发送
 
         String msg = "Hello World RabbitMQ 4 Topic Exchange Message ...";
-        channel.basicPublish(exchangeName, routingKey1 , null , msg.getBytes());
-        channel.basicPublish(exchangeName, routingKey2 , null , msg.getBytes());
-        channel.basicPublish(exchangeName, routingKey3 , null , msg.getBytes());
+        channel.basicPublish(exchangeName, routingKey1, null, msg.getBytes());
+        channel.basicPublish(exchangeName, routingKey2, null, msg.getBytes());
+        channel.basicPublish(exchangeName, routingKey3, null, msg.getBytes());
         channel.close();
         connection.close();
     }

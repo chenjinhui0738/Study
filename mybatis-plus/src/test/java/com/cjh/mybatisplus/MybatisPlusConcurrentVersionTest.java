@@ -45,6 +45,7 @@ public class MybatisPlusConcurrentVersionTest {
         //价格覆盖，最后的结果：70
         System.out.println("最后的结果：" + p3.getPrice());
     }
+
     /**
      * 设置乐观锁的情况
      * 小李：100+50
@@ -66,7 +67,7 @@ public class MybatisPlusConcurrentVersionTest {
         int result2 = productMapper.updateById(p2);
         System.out.println("小王修改的结果：" + result2);
         //未更新成功的情况下
-        if(result2 == 0){
+        if (result2 == 0) {
             //失败重试，重新获取version并更新
             p2 = productMapper.selectById(1L);
             p2.setPrice(p2.getPrice() - 30);

@@ -19,7 +19,7 @@ public class Procuder {
         Channel channel = connection.createChannel();
 
         //4 通过Channel发送数据
-        for(int i=0; i < 5; i++){
+        for (int i = 0; i < 5; i++) {
             String msg = "Hello RabbitMQ!";
             //1 exchange   2 routingKey
             channel.basicPublish("", "test001", null, msg.getBytes());

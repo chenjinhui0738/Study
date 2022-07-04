@@ -21,8 +21,10 @@ public class GroupChatClient2 {
     private Selector selector;
     private SocketChannel socketChannel;
     private String username;
+
     /**
      * 构造器, 完成初始化工作
+     *
      * @throws IOException
      */
     public GroupChatClient2() throws IOException {
@@ -41,13 +43,14 @@ public class GroupChatClient2 {
 
     /**
      * 向服务器发送消息
+     *
      * @param info
      */
     public void sendInfo(String info) {
         info = username + " 说：" + info;
         try {
             socketChannel.write(ByteBuffer.wrap(info.getBytes()));
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -60,12 +63,12 @@ public class GroupChatClient2 {
         try {
             int readChannels = selector.select();
             //有可以用的通道
-            if(readChannels > 0) {
+            if (readChannels > 0) {
 
                 Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
                 while (iterator.hasNext()) {
                     SelectionKey key = iterator.next();
-                    if(key.isReadable()) {
+                    if (key.isReadable()) {
                         //得到相关的通道
                         SocketChannel sc = (SocketChannel) key.channel();
                         //得到一个Buffer
@@ -79,7 +82,7 @@ public class GroupChatClient2 {
                 }
                 iterator.remove(); //删除当前的selectionKey, 防止重复操作
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -94,7 +97,7 @@ public class GroupChatClient2 {
                 chatClient.readInfo();
                 try {
                     Thread.currentThread().sleep(3000);
-                }catch (InterruptedException e) {
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
