@@ -92,14 +92,6 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional> <!-- 可以防止将devtools依赖传递到其他模块中 -->
         </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
     </dependencies>
 
     <dependencyManagement>

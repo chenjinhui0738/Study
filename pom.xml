@@ -25,6 +25,7 @@
         <module>canal</module>
         <module>japidocs</module>
         <module>scan-login</module>
+        <module>spring-security</module>
         <module>spring-security-oauth2</module>
         <module>sso</module>
     </modules>
@@ -99,7 +100,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

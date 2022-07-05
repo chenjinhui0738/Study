@@ -26,7 +26,7 @@ public class MyBatisPlusServiceTest {
     @Resource
     private UserServiceImpl UserServiceImpl;
     @Value("${test.list}")
-    private List<Integer> testList;
+    private List<String> testList;
 
     @Test
     public void count() {
