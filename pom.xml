@@ -28,6 +28,8 @@
         <module>spring-security</module>
         <module>spring-security-oauth2</module>
         <module>sso</module>
+        <module>websocket</module>
+        <module>dubbo</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
