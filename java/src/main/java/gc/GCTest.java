@@ -1,6 +1,7 @@
 package gc;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 import java.lang.ref.*;
 import java.util.ArrayList;

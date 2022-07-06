@@ -1,6 +1,7 @@
 package synchronize;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 public class SynchronizeTest {
     String lock = new String();

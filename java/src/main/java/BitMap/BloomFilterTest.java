@@ -2,7 +2,7 @@ package BitMap;
 
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.redisson.Redisson;
 import org.redisson.api.RBloomFilter;
 import org.redisson.api.RedissonClient;

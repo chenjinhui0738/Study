@@ -3,7 +3,7 @@ import com.google.common.collect.Lists;
 import jdk8.User;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.cglib.core.Converter;
 

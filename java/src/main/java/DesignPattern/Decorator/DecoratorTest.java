@@ -1,6 +1,7 @@
 package DesignPattern.Decorator;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 public class DecoratorTest {
     @Test
