@@ -15,9 +15,9 @@
 | [openoffice](./openoffice)                         | 文件在线预览                             |
 | [rabbitmq](./rabbitmq)                         | rabbitmq基本使用                             |
 | [scan-login](./scan-login)                         | 扫码登录                             |
-| [spring](./spring)                         | spring的常见应用                             |
+| [spring-boot](./spring-boot)                         | springboot的常见应用,包含接口加/解密、接口异步处理、跨域处理、IP归属地功能                             |
 | [sping-aop](./sping-aop)                         | aop使用                             |
-| [spring-security](./spring-security)                         | spring-security的基本使用                             |
+| [spring-security](./spring-security)                         | spring-security的基本使用，包含自定义认证、图形验证码、记住我功能、短信验证码、session共享处理、退出登录、权限控制                             |
 | [spring-security-oauth2](./spring-security-oauth2)                         | spring-security-oauth2基本使用                             |
 | [springcloud](./springcloud)                         | springcloud的常用组件                           |
 | [sso](./sso)                         | sso单点登录                          |

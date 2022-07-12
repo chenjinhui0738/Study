@@ -7,7 +7,7 @@
     <modules>
         <module>java</module>
         <module>springcloud</module>
-        <module>spring</module>
+        <module>spring-boot</module>
         <module>swagger</module>
         <module>thymeleaf</module>
         <module>rabbitmq</module>
