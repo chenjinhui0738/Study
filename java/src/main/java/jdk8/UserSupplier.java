@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 public class UserSupplier implements Supplier<User> {
-    private int index = 10;
+    private int index = 0;
     private Random random = new Random();
 
     public int getIndex() {
