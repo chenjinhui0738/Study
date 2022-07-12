@@ -1,6 +1,5 @@
 # 工程简介
-百度开源分布式id
+>百度开源分布式id
 
-
-# 延伸阅读
+参考文章:https://mp.weixin.qq.com/s/AauKbRUGtihr-d-Oz7lcBw
 
