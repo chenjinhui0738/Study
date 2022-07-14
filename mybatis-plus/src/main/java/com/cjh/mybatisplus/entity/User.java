@@ -13,7 +13,9 @@ import java.util.Date;
 //默认使用mapper中的泛型来匹配表，如果有设置全局表前缀，则默认匹配规则为前缀+实体类名称
 //@TableName("t_user")
 //lombok注释,maven中执行compile命令后编译文件中会自动帮我们生成这些
-//@NoArgsConstructor
+//@NoArgsConstructor//无参构造
+//@AllArgsConstructor//全参构造
+//@ToString//toString方法
 //@Getter
 //@Setter
 //@EqualsAndHashCode

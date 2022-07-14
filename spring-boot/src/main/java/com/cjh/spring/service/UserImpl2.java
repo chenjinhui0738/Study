@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
-@Primary
+@Primary//设置注入优先级
 public class UserImpl2 implements UserInterface {
     @Override
     public User getUser() {
