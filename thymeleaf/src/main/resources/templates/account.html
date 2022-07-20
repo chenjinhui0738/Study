@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Thymeleaf 语法</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+</head>
+<body>
+<h2>ITDragon Thymeleaf 语法</h2>
+<!--文本替换-->
+<p th:text="${thText}" />
+<!--支持html的文本替换-->
+<p th:utext="${thUText}" />
+<!--设置当前元素的value值-->
+<input type="text" th:value="${thValue}" />
+<!--件判断，类似的有th:switch，th:case，优先级仅次于th:each, 其中#strings是变量表达式的内置方法-->
+<p th:text="${thIf}" th:if="${not #strings.isEmpty(thIf)}"></p>
+<!--th:insert 把代码块插入当前div中，优先级最高，类似的有th:replace，th:include，~{模板名::片段名}-->
+<div th:insert="~{common::thCommon}"></div>
+<!--th:object 声明变量，和*{} 一起使用-->
+<div th:object="${account}">
+    <p>账号: <span th:text="*{account}" /></p>
+    <p>姓名: <span th:text="*{name}" /></p>
+    <p>密码: <span th:text="*{password}" /></p>
+    <p>账号类型: <span th:text="*{accountType}" /></p>
+    <p>电话: <span th:text="*{tel}" /></p>
+</div></body></html>
+<table>
+    <tr>
+        <th>no</th>
+        <th>account</th>
+        <th>name</th>
+        <th>password</th>
+        <th>accountType</th>
+        <th>tel</th>
+    </tr>
+    <tr th:each="list,stat : ${accountList}">
+        <td th:text="${stat.count}"></td>
+        <td th:text="${list.account}"></td>
+        <td th:text="${list.name}"></td>
+        <td th:text="${list.password}"></td>
+        <td th:text="${list.accountType}"></td>
+        <td th:text="${list.tel}"></td>
+    </tr>
+</table>
+</body>
+</html>
