@@ -1,7 +1,7 @@
 package com.cjh.mybatis.mybatis.service.impl;
 
 import com.cjh.mybatis.mybatis.entity.Student;
-import com.cjh.mybatis.mybatis.mapper.StudentMapper;
+import com.cjh.mybatis.mybatis.dao.StudentMapper;
 import com.cjh.mybatis.mybatis.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

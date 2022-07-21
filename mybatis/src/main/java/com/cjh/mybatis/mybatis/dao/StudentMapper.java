@@ -1,9 +1,11 @@
-package com.cjh.mybatis.mybatis.mapper;
+package com.cjh.mybatis.mybatis.dao;
 
 import com.cjh.mybatis.mybatis.entity.Student;
 import org.apache.ibatis.annotations.*;
-import org.springframework.stereotype.Component;
 
+/**
+ * 1.使用xml方式
+ */
 /*public interface StudentMapper {
     int add(Student student);
     int update(Student student);
@@ -12,7 +14,7 @@ import org.springframework.stereotype.Component;
 }*/
 
 /**
- * 使用注解方式
+ * 2.使用注解方式
  */
 @Mapper
 public interface StudentMapper {
