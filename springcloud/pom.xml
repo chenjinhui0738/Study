@@ -16,6 +16,8 @@
         <module>zuul</module>
         <module>nacos</module>
         <module>sentinel</module>
+        <module>sleuth/sleuth-provider1</module>
+        <module>sleuth/sleuth-provider2</module>
     </modules>
     <groupId>org.cjh</groupId>
     <artifactId>springcloud</artifactId>
