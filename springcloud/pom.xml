@@ -14,6 +14,8 @@
         <module>gateway-limiter</module>
         <module>ribbon</module>
         <module>zuul</module>
+        <module>nacos</module>
+        <module>sentinel</module>
     </modules>
     <groupId>org.cjh</groupId>
     <artifactId>springcloud</artifactId>
