@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 /**
  * ThreadLocal其实就是每个新线程访问共享变量时，保存一份自己的线程副本。每个线程都是使用自己的值。
  * ThreadLocal相当于给每个线程都开辟了一个独立的存储空间，各个线程的ThreadLocal关联的实例互不干扰。
- * 在多线程环境中，通常在使用不安全的类时使用ThreadLocal；按照各自线程的值进行操作某些操作
+ * 这样在业务代码中，就能通get()获取到刚刚设置的对象。特别是对业务代码调用层级比较深的情况，这种用法非常有用，可以减少很多不必要传参。
  */
 public class ThreadLocalTest {
     public final ThreadLocal threadLocal = new ThreadLocal();

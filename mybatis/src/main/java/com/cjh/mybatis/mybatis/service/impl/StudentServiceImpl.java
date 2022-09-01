@@ -5,6 +5,7 @@ import com.cjh.mybatis.mybatis.dao.StudentMapper;
 import com.cjh.mybatis.mybatis.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -17,8 +18,18 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public int update(Student student) {
-        return studentMapper.update(student);
+    @Transactional(rollbackFor = Exception.class)
+    public int update(Student student) throws Exception{
+
+        int update = studentMapper.update(student);
+        try {
+
+            int a = 1/0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return update;
     }
 
     @Override

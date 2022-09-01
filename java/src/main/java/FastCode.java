@@ -1,21 +1,22 @@
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
+import jdk8.Demo;
 import jdk8.User;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.cglib.core.Converter;
+import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FastCode {
+
+
     @Test
     public void Test1() {
         //数组转list
@@ -29,6 +30,7 @@ public class FastCode {
         String[] strArr = new String[]{"1", "2"};
         Integer[] intArray = (Integer[]) ConvertUtils.convert(strArr, Integer.class);
     }
+
 
     @Test
     public void Test2() {
@@ -112,7 +114,14 @@ public class FastCode {
 
     @Test
     public void Test7() {
-
+        String requestUrl = "http://susan.sc.cn?userName=%s&age=%s&address=%s&sex=%s&roledId=%s";
+        Object userName = 1;
+        Object age = 2;
+        Object address = 3;
+        Object sex = 4;
+        Object roledId = 5;
+        String url = String.format(requestUrl,userName,age,address,sex,roledId);
+        System.out.println(url);
     }
 
     @Test

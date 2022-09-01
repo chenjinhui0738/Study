@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import java.util.List;
 
-public class User {
+public class User extends Person{
     //用户Id
     Integer userId;
 
@@ -13,6 +13,18 @@ public class User {
 
     //用户工资
     Double salary;
+    //执行顺序
+    //先执行父类再执行子类
+    //1.静态代码块（只执行一次）2.构造代码块（每次调用都会执行）3.构造方法
+
+    //构造代码块
+    {
+        System.out.println("构造代码块运行");
+    }
+    //静态代码块
+    static{
+        System.out.println("静态代码块运行");
+    }
 
     //
     List<Product> productList;
@@ -21,8 +33,9 @@ public class User {
         this.userId = userId;
         this.userName = userName;
     }
-
+    //构造方法
     public User() {
+        System.out.println("构造方法执行");
     }
 
     public Integer getUserId() {
