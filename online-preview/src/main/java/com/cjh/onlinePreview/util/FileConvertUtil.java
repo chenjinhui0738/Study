@@ -1,11 +1,14 @@
-package com.cjh.openoffice.util;
+package com.cjh.onlinePreview.util;
 
-import com.artofsolving.jodconverter.DefaultDocumentFormatRegistry;
 import com.artofsolving.jodconverter.DocumentConverter;
-import com.artofsolving.jodconverter.DocumentFormat;
 import com.artofsolving.jodconverter.openoffice.connection.OpenOfficeConnection;
 import com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection;
 import com.artofsolving.jodconverter.openoffice.converter.StreamOpenOfficeDocumentConverter;
+import org.jodconverter.LocalConverter;
+import org.jodconverter.document.DefaultDocumentFormatRegistry;
+import org.jodconverter.document.DocumentFormat;
+import org.jodconverter.office.LocalOfficeManager;
+import org.jodconverter.office.OfficeManager;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -25,6 +28,8 @@ public class FileConvertUtil {
      */
     private static final Integer OPENOFFICE_PORT = 8100;
 
+    public static final String LIBREOFFICE_PATH = "D:\\LibreOffice";
+
     /**
      * 方法描述 office文档转换为PDF(处理本地文件)
      *
@@ -35,7 +40,7 @@ public class FileConvertUtil {
     public static InputStream convertLocaleFile(String sourcePath, String suffix) throws Exception {
         File inputFile = new File(sourcePath);
         InputStream inputStream = new FileInputStream(inputFile);
-        return covertCommonByStream(inputStream, suffix);
+        return covertByLibreOffice(inputStream, suffix);
     }
 
     /**
@@ -55,7 +60,7 @@ public class FileConvertUtil {
         int httpResult = httpconn.getResponseCode();
         if (httpResult == HttpURLConnection.HTTP_OK) {
             InputStream inputStream = urlconn.getInputStream();
-            return covertCommonByStream(inputStream, suffix);
+            return covertByLibreOffice(inputStream, suffix);
         }
         return null;
     }
@@ -67,14 +72,27 @@ public class FileConvertUtil {
      * @param suffix      源文件后缀
      * @return InputStream 转换后文件输入流
      */
-    public static InputStream covertCommonByStream(InputStream inputStream, String suffix) throws Exception {
+    public static InputStream covertByLibreOffice(InputStream inputStream, String suffix) throws Exception {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        LocalOfficeManager.Builder builder = LocalOfficeManager.builder();
+        builder.officeHome(LIBREOFFICE_PATH);
+        OfficeManager build = builder.build();
+        build.start();
+        LocalConverter make = LocalConverter.make(build);
+        DocumentFormat sourceFormat = DefaultDocumentFormatRegistry.getFormatByExtension(suffix);
+        DocumentFormat targetFormat = DefaultDocumentFormatRegistry.PDF;
+        make.convert(inputStream).as(sourceFormat).to(out).as(targetFormat).execute();
+        build.stop();
+        return outputStreamConvertInputStream(out);
+    }
+    public static InputStream covertByOpenOffice(InputStream inputStream, String suffix) throws Exception {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         OpenOfficeConnection connection = new SocketOpenOfficeConnection("127.0.0.1", OPENOFFICE_PORT);
         connection.connect();
         DocumentConverter converter = new StreamOpenOfficeDocumentConverter(connection);
-        DefaultDocumentFormatRegistry formatReg = new DefaultDocumentFormatRegistry();
-        DocumentFormat targetFormat = formatReg.getFormatByFileExtension(DEFAULT_SUFFIX);
-        DocumentFormat sourceFormat = formatReg.getFormatByFileExtension(suffix);
+        com.artofsolving.jodconverter.DefaultDocumentFormatRegistry formatReg = new com.artofsolving.jodconverter.DefaultDocumentFormatRegistry();
+        com.artofsolving.jodconverter.DocumentFormat targetFormat = formatReg.getFormatByFileExtension(DEFAULT_SUFFIX);
+        com.artofsolving.jodconverter.DocumentFormat sourceFormat = formatReg.getFormatByFileExtension(suffix);
         converter.convert(inputStream, sourceFormat, out, targetFormat);
         connection.disconnect();
         return outputStreamConvertInputStream(out);

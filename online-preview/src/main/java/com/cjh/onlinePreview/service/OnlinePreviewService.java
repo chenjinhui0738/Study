@@ -1,6 +1,6 @@
-package com.cjh.openoffice.service;
+package com.cjh.onlinePreview.service;
 
-import com.cjh.openoffice.util.FileConvertUtil;
+import com.cjh.onlinePreview.util.FileConvertUtil;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 @Service
-public class OpenOfficeService {
+public class OnlinePreviewService {
     /**
      * @Description:系统文件在线预览接口
      * @Author: tarzan

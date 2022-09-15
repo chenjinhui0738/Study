@@ -1,13 +1,13 @@
-package com.cjh.openoffice;
+package com.cjh.onlinePreview;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OpenofficeApplication {
+public class OnlinePreviewApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OpenofficeApplication.class, args);
+        SpringApplication.run(OnlinePreviewApplication.class, args);
     }
 
 }
