@@ -13,7 +13,7 @@
         <module>rabbitmq</module>
         <module>guava</module>
         <module>easyexcel</module>
-        <module>openoffice</module>
+        <module>online-preview</module>
         <module>springbatch</module>
         <module>tesseract</module>
         <module>uid_generator</module>
